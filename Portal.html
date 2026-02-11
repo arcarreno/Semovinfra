@@ -11,121 +11,123 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
-         .navbar {
-            top: 32px; /* Debajo de la top-bar */
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+         .main-nav {
+            background-color: #fff;
+            border-bottom: 4px solid var(--dorado-8);
         }
-        .navbar-brand-text {
-            line-height: 1.1;
-        }
+        
         .nav-link {
-            color: var(--gris-oscuro) !important;
+            color: var(--gris-2) !important;
             font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
+            font-size: 0.8rem;
             padding: 10px 15px !important;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
-        .nav-link:hover, .nav-link.active {
-            color: var(--guinda) !important;
+        
+        .nav-link:hover, .dropdown-item:hover {
+            color: var(--guinda-1) !important;
+            background-color: rgba(219, 198, 179, 0.2);
         }
-        .nav-link i {
-            margin-right: 5px;
-            color: var(--dorado);
-        }
+
         .dropdown-menu {
-            border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-top: 3px solid var(--guinda);
-        }
-        .dropdown-item {
-            font-size: 0.85rem;
-            font-weight: 500;
-            padding: 10px 20px;
-        }
-        .dropdown-item:hover {
-            background-color: var(--gris-claro);
-            color: var(--guinda);
+            border-top: 4px solid var(--guinda-1);
+            border-radius: 0 0 8px 8px;
         }
     </style>
 </head>
 <body>
-    <!-- Preloader -->
     <div class="preloader" id="preloader">
-        <div class="loader"></div>
-        <img src="models/images/semo.png" alt="Cargando..." class="loader-img">
+        <img src="../models/images/semo.png" alt="Cargando..." class="loader-img">
     </div>
 
-    <!-- Barra Superior Oficial -->
     <div class="top-bar">
-        <div class="container top-bar-content">
+        <div class="container d-flex justify-content-between align-items-center py-2">
             <div class="top-left">
-                <a href="#" class="top-link">
-                    <i class="fas fa-landmark"></i>
-                    Gobierno de Puebla
+                <a href="../Portal.html" class="text-white text-decoration-none small">
+                    <i class="fas fa-landmark me-2"></i> Gobierno de Puebla
                 </a>
             </div>
-            <div class="top-right">
-                <a href="#"><i class="fas fa-file-alt"></i> Trámites</a>
-                <a href="#"><i class="fas fa-building"></i> Gobierno</a>
-                <a href="#"><i class="fas fa-search"></i> Buscar</a>
-                <a href="#"><i class="fas fa-question-circle"></i> Ayuda</a>
+            <div class="top-right d-flex gap-3">
+                <a href="#" class="text-white text-decoration-none small"><i class="fas fa-file-alt"></i> Trámites</a>
+                <a href="#" class="text-white text-decoration-none small"><i class="fas fa-building"></i> Gobierno</a>
+                <a href="#" class="text-white text-decoration-none small"><i class="fas fa-search"></i> Buscar</a>
             </div>
         </div>
     </div>
 
-    <!-- Navegación Principal Completa -->
-   <nav class="navbar navbar-expand-xl fixed-top">
-        <div class="container">
+    <nav class="navbar navbar-expand-xl sticky-top main-nav shadow-sm p-0">
+        <div class="container nav-content py-2">
+            
             <a class="navbar-brand d-flex align-items-center" href="../Portal.html">
-                <img src="../models/images/image.png" alt="Logo Puebla" height="55" class="me-3">
-                <div class="d-none d-md-flex flex-column navbar-brand-text border-start border-2 ps-3">
-                    <span class="fw-bold text-dark fs-5">TRANSPARENCIA</span>
-                    <span class="fw-light text-dark fs-5">PRESUPUESTARIA</span>
-                    <span class="text-muted" style="font-size: 0.75rem;">Gobierno del Estado de Puebla</span>
+                <img src="../models/images/image.png" alt="Gobierno de Puebla" class="logo-img me-3" style="height: 50px;">
+                <div class="d-none d-lg-block lh-1">
+                    <span class="d-block fw-bold text-guinda" style="color: var(--guinda-1); letter-spacing: 1px;">TRANSPARENCIA</span>
+                    <span class="d-block fw-light text-muted">PRESUPUESTARIA</span>
+                    <span class="d-block text-muted" style="font-size: 10px;">Gobierno del Estado de Puebla</span>
                 </div>
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Navegación">
+                <span class="fas fa-bars fs-2" style="color: var(--guinda-1);"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-xl-center">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                <ul class="navbar-nav align-items-center text-uppercase fw-bold">
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="Ciclo-Presupuestario.html"><i class="fas fa-sync-alt"></i> Ciclo</a>
+                        <a href="../Presupuestacion/Ciclo-Presupuestario.html" class="nav-link">
+                            <i class="fas fa-sync-alt me-1"></i> CICLO
+                        </a>
                     </li>
+                    
                     <li class="nav-item">
-                        <a class="nav-link active" href="Planeacion.html"><i class="fas fa-chart-line"></i> Planeación</a>
+                        <a href="../Portal/Presupuestacion/Planeacion.html" class="nav-link">
+                            <i class="fas fa-chart-line me-1"></i> PLANEACIÓN
+                        </a>
                     </li>
                     
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="ingresoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-arrow-down"></i> Ingreso
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-arrow-down me-1"></i> INGRESO
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="ingresoDropdown">
-                            <li><a class="dropdown-item" href="Ingresos-Federales.html">Ingresos Federales</a></li>
-                            <li><a class="dropdown-item" href="Recaudacion-Local.html">Recaudación Local</a></li>
+                        <ul class="dropdown-menu shadow">
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="gastoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-arrow-up"></i> Gasto
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-arrow-up me-1"></i> GASTO
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="gastoDropdown">
-                            <li><a class="dropdown-item" href="Programas.html">Programas</a></li>
-                            <li><a class="dropdown-item" href="Obra-Publica-Abierta.html">Obra Pública</a></li>
-                            <li><a class="dropdown-item" href="Entidades-Federativas.html">Entidades Federativas</a></li>
+                        <ul class="dropdown-menu shadow">
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i class="fas fa-clipboard-list me-2"></i> Programas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i class="fas fa-university me-2"></i> Entidades Federativas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
                         </ul>
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="Sistema-Evaluacion-Desempeno.html"><i class="fas fa-chart-bar"></i> Evaluación</a>
+                        <a href="../Presupuestacion/Sistema-Evaluacion-Desempeno.html" class="nav-link">
+                            <i class="fas fa-chart-bar me-1"></i> EVALUACIÓN
+                        </a>
                     </li>
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="Datos-Abiertos.html"><i class="fas fa-database"></i> Datos</a>
+                        <a href="../Presupuestacion/Datos-Abiertos.html" class="nav-link">
+                            <i class="fas fa-database me-1"></i> DATOS
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="../Presupuestacion/Capacitacion.html" class="nav-link">
+                            <i class="fas fa-graduation-cap me-1"></i> CAPACITACIÓN
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn border-0 text-secondary fs-5"><i class="fas fa-search"></i></button>
                     </li>
                 </ul>
             </div>

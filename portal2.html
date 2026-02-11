@@ -6,13 +6,21 @@
     <title>Ciclo Presupuestario - Transparencia Presupuestaria Puebla</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../styles.css">
     
     <style>
-         body {
+        :root {
+            --guinda-1: #691C32;
+            --dorado-8: #BC955C;
+            --gris-2: #333333;
+            --verde-3: #11322A; /* Ajuste para el verde institucional que usa tu diseño */
+            --blanco: #ffffff;
+            --crema-4: #f4f4f4;
+        }
+
+        body {
             font-family: 'Montserrat', sans-serif;
             color: var(--gris-2);
         }
@@ -187,19 +195,16 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <ul class="navbar-nav align-items-center text-uppercase fw-bold">
-                    
                     <li class="nav-item">
                         <a href="../Presupuestacion/Ciclo-Presupuestario.html" class="nav-link">
                             <i class="fas fa-sync-alt me-1"></i> CICLO
                         </a>
                     </li>
-                    
                     <li class="nav-item">
                         <a href="../Presupuestacion/Planeacion.html" class="nav-link">
                             <i class="fas fa-chart-line me-1"></i> PLANEACIÓN
                         </a>
                     </li>
-                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-arrow-down me-1"></i> INGRESO
@@ -209,7 +214,6 @@
                             <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
                         </ul>
                     </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-arrow-up me-1"></i> GASTO
@@ -221,25 +225,21 @@
                             <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
                         </ul>
                     </li>
-                    
                     <li class="nav-item">
                         <a href="../Presupuestacion/Sistema-Evaluacion-Desempeno.html" class="nav-link">
                             <i class="fas fa-chart-bar me-1"></i> EVALUACIÓN
                         </a>
                     </li>
-                    
                     <li class="nav-item">
                         <a href="../Presupuestacion/Datos-Abiertos.html" class="nav-link">
                             <i class="fas fa-database me-1"></i> DATOS
                         </a>
                     </li>
-                    
                     <li class="nav-item">
                         <a href="../Presupuestacion/Capacitacion.html" class="nav-link">
                             <i class="fas fa-graduation-cap me-1"></i> CAPACITACIÓN
                         </a>
                     </li>
-                    
                     <li class="nav-item ms-lg-2">
                         <button class="btn border-0 text-secondary fs-5"><i class="fas fa-search"></i></button>
                     </li>
@@ -259,7 +259,10 @@
 
     <div class="container mb-5">
         
-        <div class="featured-box" style="justify-content: flex-start; text-align: center;">
+        <div class="featured-box">
+            <div class="featured-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
             <div class="featured-content" style="flex: 1;">
                 <h3>¿En qué consisten las etapas del ciclo presupuestario en México?</h3>
             </div>
@@ -317,21 +320,21 @@
             </div>
         </div>
 
-        <div class="featured-box mt-5" style="text-align: center; justify-content: center;">
-            <div class="featured-icon" style="justify-content: center; text-align: center;">
+        <div class="featured-box mt-5">
+            <div class="featured-icon">
                 <i class="fas fa-file-alt"></i>
             </div>
             <div class="featured-content" style="flex: 1;">
                 <h3>Documentos Ciudadanos</h3>
                 <p style="opacity: 0.9;">
-                   Aquí encontrarás algunos de los documentos más relevantes sobre finanzas públicas, explicados de manera sencilla y en formatos accesibles.
+                    Aquí encontrarás algunos de los documentos más relevantes sobre finanzas públicas, explicados de manera sencilla y en formatos accesibles.
                 </p>
             </div>
         </div>
 
     </div>
 
-    <footer class="footer-section bg-secondary text-white py-5" style="background-color: var(--verde-3) !important;">
+    <footer class="footer-section bg-secondary text-white py-5" style="background-color: var(--gris-2) !important;">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-4">
@@ -392,15 +395,24 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../script.js"></script> 
+
     <script>    
         document.addEventListener('DOMContentLoaded', function() {
-            initScrollReveal(); // Inicializar animaciones de scroll
+            if (typeof initScrollReveal === "function") {
+                initScrollReveal(); 
+            }
         });
-
-        initScrollReveal();
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../script.js"></script>
+    
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
