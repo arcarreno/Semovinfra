@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planeación Nacional - Transparencia Presupuestaria Puebla</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../styles.css">
-    
-    <style>
 
+    <style>
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--gris-2);
@@ -20,7 +22,7 @@
         /* --- NAVEGACIÓN UNIFICADA --- */
         .top-bar {
             background-color: var(--guinda-1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.85rem;
         }
 
@@ -28,7 +30,7 @@
             background-color: #fff;
             border-bottom: 4px solid var(--dorado-8);
         }
-        
+
         .nav-link {
             color: var(--gris-2) !important;
             font-weight: 600;
@@ -36,8 +38,9 @@
             padding: 10px 15px !important;
             transition: all 0.3s;
         }
-        
-        .nav-link:hover, .dropdown-item:hover {
+
+        .nav-link:hover,
+        .dropdown-item:hover {
             color: var(--guinda-1) !important;
             background-color: rgba(219, 198, 179, 0.2);
         }
@@ -54,12 +57,27 @@
                 padding: 15px;
                 margin-top: 10px;
                 border-radius: 8px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             }
-            .navbar-collapse .nav-link { color: #ffffff !important; border-radius: 5px; }
-            .navbar-collapse .dropdown-menu { background-color: transparent; border: none; padding-left: 15px; margin-top: 0; }
-            .navbar-collapse .dropdown-item { color: #ffffff !important; border-radius: 5px; }
-            .navbar-collapse .nav-link:hover, 
+
+            .navbar-collapse .nav-link {
+                color: #ffffff !important;
+                border-radius: 5px;
+            }
+
+            .navbar-collapse .dropdown-menu {
+                background-color: transparent;
+                border: none;
+                padding-left: 15px;
+                margin-top: 0;
+            }
+
+            .navbar-collapse .dropdown-item {
+                color: #ffffff !important;
+                border-radius: 5px;
+            }
+
+            .navbar-collapse .nav-link:hover,
             .navbar-collapse .dropdown-item:hover {
                 background-color: rgba(255, 255, 255, 0.1) !important;
                 color: var(--dorado-8) !important;
@@ -68,17 +86,17 @@
 
         /* --- ESTILOS DE PLANEACIÓN --- */
         .page-header {
-            /* Puedes cambiar la imagen por banner_planeacion.jpg si la tienes */
-            background: linear-gradient(135deg, var(--guinda-1), var(--verde-3)), url('../models/images/banner_home.png'); 
+            background-color: var(--guinda-1);
+            background-image: url('../models/images/banner_home.png');
             background-size: cover;
             background-position: center;
-            background-blend-mode: multiply;
+            background-repeat: no-repeat;
             color: var(--blanco);
             padding: 100px 0 60px;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
             margin-bottom: 40px;
             border-bottom: 5px solid var(--dorado-8);
+            position: relative;
         }
 
         .page-header h1 {
@@ -88,6 +106,39 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 2px 2px 0px var(--verde-3);
+        }
+
+        /* --- RESPONSIVE PAGE HEADER --- */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 60px 20px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+                word-break: break-word;
+            }
+
+            .page-header p {
+                font-size: 1rem !important;
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 45px 15px 30px;
+            }
+
+            .page-header h1 {
+                font-size: 1.4rem;
+                letter-spacing: 0.5px;
+            }
+
+            .page-header p {
+                font-size: 0.85rem !important;
+            }
         }
 
         .section-title {
@@ -108,16 +159,49 @@
 
         /* Preloader */
         .preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: var(--guinda-1);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        .preloader.hidden { opacity: 0; visibility: hidden; }
-        .loader-img { width: 150px; height: auto; animation: latido 2s infinite ease-in-out; }
-        @keyframes latido { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } 100% { transform: scale(1); opacity: 1; } }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-img {
+            width: 150px;
+            height: auto;
+            animation: latido 2s infinite ease-in-out;
+        }
+
+        @keyframes latido {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div class="preloader" id="preloader">
@@ -141,47 +225,65 @@
 
     <nav class="navbar navbar-expand-xl sticky-top main-nav shadow-sm p-0">
         <div class="container nav-content py-2">
-            
+
             <a class="navbar-brand d-flex align-items-center" href="../Portal.html">
-                <img src="../models/images/image.png" alt="Gobierno de Puebla" class="logo-img me-3" style="height: 50px;">
+                <img src="../models/images/image.png" alt="Gobierno de Puebla" class="logo-img me-3"
+                    style="height: 50px;">
                 <div class="d-none d-lg-block lh-1">
-                    <span class="d-block fw-bold text-guinda" style="color: var(--guinda-1); letter-spacing: 1px;">TRANSPARENCIA</span>
+                    <span class="d-block fw-bold text-guinda"
+                        style="color: var(--guinda-1); letter-spacing: 1px;">TRANSPARENCIA</span>
                     <span class="d-block fw-light text-muted">PRESUPUESTARIA</span>
                     <span class="d-block text-muted" style="font-size: 10px;">Gobierno del Estado de Puebla</span>
                 </div>
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Navegación">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                aria-label="Navegación">
                 <span class="fas fa-bars fs-2" style="color: var(--guinda-1);"></span>
             </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <ul class="navbar-nav align-items-center text-uppercase fw-bold">
-                    <li class="nav-item"><a href="../Presupuestacion/Ciclo-Presupuestario.html" class="nav-link"><i class="fas fa-sync-alt me-1"></i> CICLO</a></li>
-                    <li class="nav-item"><a href="../Presupuestacion/Planeacion.html" class="nav-link active" style="color: var(--guinda-1);"><i class="fas fa-chart-line me-1"></i> PLANEACIÓN</a></li>
-                    
+                    <li class="nav-item"><a href="../Presupuestacion/Ciclo-Presupuestario.html" class="nav-link"><i
+                                class="fas fa-sync-alt me-1"></i> CICLO</a></li>
+                    <li class="nav-item"><a href="../Presupuestacion/Planeacion.html" class="nav-link active"
+                            style="color: var(--guinda-1);"><i class="fas fa-chart-line me-1"></i> PLANEACIÓN</a></li>
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-arrow-down me-1"></i> INGRESO</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"><i class="fas fa-arrow-down me-1"></i> INGRESO</a>
                         <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i
+                                        class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i
+                                        class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-arrow-up me-1"></i> GASTO</a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"><i class="fas fa-arrow-up me-1"></i> GASTO</a>
                         <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i class="fas fa-clipboard-list me-2"></i> Programas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i class="fas fa-university me-2"></i> Entidades Federativas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i
+                                        class="fas fa-clipboard-list me-2"></i> Programas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i
+                                        class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i
+                                        class="fas fa-university me-2"></i> Entidades Federativas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i
+                                        class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
                         </ul>
                     </li>
-                    
-                    <li class="nav-item"><a href="../Presupuestacion/Sistema-Evaluacion-Desempeno.html" class="nav-link"><i class="fas fa-chart-bar me-1"></i> EVALUACIÓN</a></li>
-                    <li class="nav-item"><a href="../Presupuestacion/Datos-Abiertos.html" class="nav-link"><i class="fas fa-database me-1"></i> DATOS</a></li>
-                    <li class="nav-item"><a href="../Presupuestacion/Capacitacion.html" class="nav-link"><i class="fas fa-graduation-cap me-1"></i> CAPACITACIÓN</a></li>
-                    <li class="nav-item ms-lg-2"><button class="btn border-0 text-secondary fs-5"><i class="fas fa-search"></i></button></li>
+
+                    <li class="nav-item"><a href="../Presupuestacion/Sistema-Evaluacion-Desempeno.html"
+                            class="nav-link"><i class="fas fa-chart-bar me-1"></i> EVALUACIÓN</a></li>
+                    <li class="nav-item"><a href="../Presupuestacion/Datos-Abiertos.html" class="nav-link"><i
+                                class="fas fa-database me-1"></i> DATOS</a></li>
+                    <li class="nav-item"><a href="../Presupuestacion/Capacitacion.html" class="nav-link"><i
+                                class="fas fa-graduation-cap me-1"></i> CAPACITACIÓN</a></li>
+                    <li class="nav-item ms-lg-2"><button class="btn border-0 text-secondary fs-5"><i
+                                class="fas fa-search"></i></button></li>
                 </ul>
             </div>
         </div>
@@ -191,22 +293,27 @@
         <div class="container">
             <h1>PLANEACIÓN</h1>
             <p style="font-size: 1.2rem; max-width: 900px; margin: 0 auto;">
-                En esta sección encontrarás los principios rectores y ejes generales del <strong>Plan Nacional de Desarrollo 2025-2030</strong> y sus programas derivados.
+                En esta sección encontrarás los principios rectores y ejes generales del <strong>Plan Nacional de
+                    Desarrollo 2025-2030</strong> y sus programas derivados.
                 <br><br>
-                Cuenta con una tabla de búsqueda, a través de la cual podrás identificar los programas vinculados a cada principio o eje y acceder a la información sobre <strong>sus objetivos e indicadores</strong>.
+                Cuenta con una tabla de búsqueda, a través de la cual podrás identificar los programas vinculados a cada
+                principio o eje y acceder a la información sobre <strong>sus objetivos e indicadores</strong>.
             </p>
         </div>
     </header>
 
     <div class="container" style="margin-bottom: 80px;">
-        
+
         <h2 class="section-title">Planeación Nacional 2025-2030</h2>
         <p class="section-subtitle">
-            El <strong>Plan Nacional de Desarrollo</strong> (PND) es el documento en el que <strong>la sociedad y el gobierno</strong> han definido los <strong>grandes objetivos</strong> de las políticas públicas y las acciones específicas para alcanzarlos.
+            El <strong>Plan Nacional de Desarrollo</strong> (PND) es el documento en el que <strong>la sociedad y el
+                gobierno</strong> han definido los <strong>grandes objetivos</strong> de las políticas públicas y las
+            acciones específicas para alcanzarlos.
         </p>
 
         <div class="text-center mt-5">
-            <img src="../models/images/infografia_PND.png" alt="Infografía del Plan Nacional de Desarrollo" class="img-fluid rounded shadow-sm" style="max-width: 100%; height: auto;">
+            <img src="../models/images/infografia_PND.png" alt="Infografía del Plan Nacional de Desarrollo"
+                class="img-fluid rounded shadow-sm" style="max-width: 100%; height: auto;">
         </div>
 
     </div>
@@ -216,34 +323,44 @@
             <div class="row gy-4">
                 <div class="col-lg-4">
                     <div class="mb-3">
-                        <img src="../models/images/image.png" alt="Gobierno de Puebla" style="filter: brightness(0) invert(1); max-width: 180px;">
+                        <img src="../models/images/image.png" alt="Gobierno de Puebla"
+                            style="filter: brightness(0) invert(1); max-width: 180px;">
                     </div>
                     <div class="lh-1">
-                        <h4 class="h6 fw-bold text-crema" style="color: var(--crema-4);">TRANSPARENCIA PRESUPUESTARIA</h4>
+                        <h4 class="h6 fw-bold text-crema" style="color: var(--crema-4);">TRANSPARENCIA PRESUPUESTARIA
+                        </h4>
                         <p class="small opacity-75">Gobierno del Estado de Puebla</p>
                     </div>
                 </div>
-                
+
                 <div class="col-6 col-lg-2">
                     <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Transparencia</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Portal de Transparencia</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Información Pública</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Protección de Datos</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Avisos de Privacidad</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Portal de
+                                Transparencia</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Información
+                                Pública</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Protección de
+                                Datos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Avisos de
+                                Privacidad</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="col-6 col-lg-2">
                     <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Recursos</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Documentos Oficiales</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Leyes y Reglamentos</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Estadísticas</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">API Documentación</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Documentos
+                                Oficiales</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Leyes y
+                                Reglamentos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Estadísticas</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">API
+                                Documentación</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="col-lg-4 text-lg-end">
                     <div class="mb-4">
                         <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Contacto</h5>
@@ -264,7 +381,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="border-top border-secondary mt-4 pt-4 text-center small opacity-50">
                 <p class="mb-1">&copy; 2026 Gobierno del Estado de Puebla. Todos los derechos reservados.</p>
                 <p>Portal de Transparencia Presupuestaria | Versión 2.0</p>
@@ -275,7 +392,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../script.js"></script>
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const preloader = document.getElementById('preloader');
             if (preloader) {
                 preloader.style.display = 'none';
@@ -283,4 +400,5 @@
         });
     </script>
 </body>
+
 </html>

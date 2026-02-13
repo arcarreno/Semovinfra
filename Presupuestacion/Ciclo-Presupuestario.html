@@ -1,74 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciclo Presupuestario - Transparencia Presupuestaria Puebla</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../styles.css">
-    
+
     <style>
-/* Estado inicial: invisible y desplazado hacia abajo */
-.stage-content {
-    opacity: 0;
-    transform: translateY(50px); /* Empieza 50px más abajo */
-    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); /* Suavizado */
-    will-change: opacity, transform;
-}
+        /* Estado inicial: invisible y desplazado hacia abajo */
+        .stage-content {
+            opacity: 0;
+            transform: translateY(50px);
+            /* Empieza 50px más abajo */
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            /* Suavizado */
+            will-change: opacity, transform;
+        }
 
-/* Estado activo: visible y en su lugar original */
-.stage-content.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+        /* Estado activo: visible y en su lugar original */
+        .stage-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* Un pequeño retraso para las cajas de la derecha para que se vea escalonado */
-.right .stage-content {
-    transition-delay: 0.2s;
-}
+        /* Un pequeño retraso para las cajas de la derecha para que se vea escalonado */
+        .right .stage-content {
+            transition-delay: 0.2s;
+        }
+
         @media (max-width: 1199.98px) {
-    /*  Fondo guinda sólido para el panel desplegable completo */
-    .navbar-collapse {
-        background-color: var(--guinda-1);
-        padding: 15px;
-        margin-top: 10px;
-        border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Sombra para que resalte */
-    }
 
-    /*  Letras blancas para los enlaces principales */
-    .navbar-collapse .nav-link {
-        color: #ffffff !important;
-        border-radius: 5px;
-    }
+            /*  Fondo guinda sólido para el panel desplegable completo */
+            .navbar-collapse {
+                background-color: var(--guinda-1);
+                padding: 15px;
+                margin-top: 10px;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                /* Sombra para que resalte */
+            }
 
-    /*  Fondo guinda también para los submenús (Ingreso, Gasto) y quitar su borde superior */
-    .navbar-collapse .dropdown-menu {
-        background-color: transparent;
-        border: none;
-        padding-left: 15px; /* Sangría para diferenciar el submenú */
-        margin-top: 0;
-    }
+            /*  Letras blancas para los enlaces principales */
+            .navbar-collapse .nav-link {
+                color: #ffffff !important;
+                border-radius: 5px;
+            }
 
-    /*  Letras blancas para los elementos dentro de los submenús */
-    .navbar-collapse .dropdown-item {
-        color: #ffffff !important;
-        border-radius: 5px;
-    }
+            /*  Fondo guinda también para los submenús (Ingreso, Gasto) y quitar su borde superior */
+            .navbar-collapse .dropdown-menu {
+                background-color: transparent;
+                border: none;
+                padding-left: 15px;
+                /* Sangría para diferenciar el submenú */
+                margin-top: 0;
+            }
 
-    /* Efecto Hover al pasar el dedo/mouse en móvil (Fondo traslúcido y letras doradas) */
-    .navbar-collapse .nav-link:hover, 
-    .navbar-collapse .dropdown-item:hover,
-    .navbar-collapse .nav-link.active {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        color: var(--dorado-8) !important;
-    }
-}
-         body {
+            /*  Letras blancas para los elementos dentro de los submenús */
+            .navbar-collapse .dropdown-item {
+                color: #ffffff !important;
+                border-radius: 5px;
+            }
+
+            /* Efecto Hover al pasar el dedo/mouse en móvil (Fondo traslúcido y letras doradas) */
+            .navbar-collapse .nav-link:hover,
+            .navbar-collapse .dropdown-item:hover,
+            .navbar-collapse .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.1) !important;
+                color: var(--dorado-8) !important;
+            }
+        }
+
+        body {
             font-family: 'Montserrat', sans-serif;
             color: var(--gris-2);
         }
@@ -76,7 +86,7 @@
         /* --- ESTILOS DE NAVEGACIÓN UNIFICADOS --- */
         .top-bar {
             background-color: var(--guinda-1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.85rem;
         }
 
@@ -84,7 +94,7 @@
             background-color: #fff;
             border-bottom: 4px solid var(--dorado-8);
         }
-        
+
         .nav-link {
             color: var(--gris-2) !important;
             font-weight: 600;
@@ -92,8 +102,9 @@
             padding: 10px 15px !important;
             transition: all 0.3s;
         }
-        
-        .nav-link:hover, .dropdown-item:hover {
+
+        .nav-link:hover,
+        .dropdown-item:hover {
             color: var(--guinda-1) !important;
             background-color: rgba(219, 198, 179, 0.2);
         }
@@ -111,7 +122,7 @@
             border-radius: 12px;
             padding: 40px;
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             align-items: center;
             gap: 30px;
             margin-bottom: 60px;
@@ -136,59 +147,276 @@
             color: var(--crema-4);
         }
 
+        /* BANNER RECTO - ESTILO MODERNO */
         .page-header {
-            background: linear-gradient(135deg, var(--guinda-1), var(--verde-3)), url('../models/images/banner_home.png');
-            background-size: cover; background-position: center; background-blend-mode: multiply;
-            color: var(--blanco); padding: 100px 0 60px; text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); margin-bottom: 40px;
+            background-color: var(--guinda-1);
+            background-image: url('../models/images/banner_home.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            color: var(--blanco);
+            padding: 100px 0 60px;
+            text-align: center;
+            margin-bottom: 40px;
             border-bottom: 5px solid var(--dorado-8);
+            position: relative;
         }
-        .page-header h1 { font-size: 3rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
-        
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+
+        /* Responsive banner */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 60px 20px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .page-header p {
+                font-size: 1rem !important;
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 40px 15px 30px;
+            }
+
+            .page-header h1 {
+                font-size: 1.5rem;
+                letter-spacing: 0.5px;
+            }
+
+            .page-header p {
+                font-size: 0.9rem !important;
+                padding: 0 10px;
+                line-height: 1.4;
+            }
+        }
+
         /* Línea de tiempo vertical */
-        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding: 40px 0; }
-        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
         .timeline::after {
-            content: ''; position: absolute; width: 6px; background-color: var(--dorado-8);
-            top: 0; bottom: 0; left: 50%; margin-left: -3px; border-radius: 3px;
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--dorado-8);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
         }
-        
-        .stage-container { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; box-sizing: border-box; }
-        
+
+        .stage-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
         .stage-container::after {
-            content: ''; position: absolute; width: 25px; height: 25px; right: -13px; background-color: var(--blanco);
-            border: 4px solid var(--guinda-1); top: 15px; border-radius: 50%; z-index: 1;
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: var(--blanco);
+            border: 4px solid var(--guinda-1);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
         }
-        
-        .left { left: 0; }
-        .right { left: 50%; }
-        
-        .left::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: 30px; border: medium solid white; border-width: 10px 0 10px 10px; border-color: transparent transparent transparent var(--blanco); }
-        .right::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: 30px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent var(--blanco) transparent transparent; }
-        .right::after { left: -12px; }
-        
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--blanco);
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--blanco) transparent transparent;
+        }
+
+        .right::after {
+            left: -12px;
+        }
+
+        /* ESTILO APPLE GLASSMORPHISM + HOVER GIGANTE */
         .stage-content {
-            padding: 20px 30px; background-color: var(--blanco); position: relative;
-            border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--verde-3);
-            transition: transform 0.3s;
+            padding: 25px 35px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            position: relative;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(125, 36, 71, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid var(--verde-3);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: center;
         }
-        .stage-content:hover { transform: translateY(-5px); border-color: var(--guinda-1); }
-        .stage-title { font-weight: 700; color: var(--guinda-1); margin-bottom: 10px; font-size: 1.2rem; }
-        .stage-number { position: absolute; top: -15px; right: 20px; background: var(--verde-3); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid var(--blanco); }
+
+        /* HOVER GIGANTE - EFECTO WOW */
+        .stage-content:hover {
+            transform: scale(1.15) translateY(-10px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 20px 60px rgba(125, 36, 71, 0.25);
+            border-top-color: var(--guinda-1);
+            border-width: 4px;
+            z-index: 10;
+        }
+
+        .stage-title {
+            font-weight: 700;
+            color: var(--guinda-1);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+        }
+
+        .stage-content:hover .stage-title {
+            color: var(--verde-3);
+            font-size: 1.4rem;
+        }
+
+        .stage-content p {
+            transition: all 0.3s;
+            line-height: 1.7;
+        }
+
+        .stage-content:hover p {
+            color: var(--gris-2);
+        }
+
+        .stage-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--verde-3), var(--guinda-1));
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s;
+        }
+
+        .stage-content:hover .stage-number {
+            transform: scale(1.2) rotate(360deg);
+            box-shadow: 0 8px 25px rgba(125, 36, 71, 0.4);
+        }
 
         @media screen and (max-width: 600px) {
-            .timeline::after { left: 31px; }
-            .stage-container { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .stage-container::after { left: 19px; }
-            .left::after { left: 19px; }
-            .right { left: 0%; }
+            .timeline::after {
+                left: 31px;
+            }
+
+            .stage-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .stage-container::after {
+                left: 19px;
+            }
+
+            .left::after {
+                left: 19px;
+            }
+
+            .right {
+                left: 0%;
+            }
         }
 
         /* Preloader */
-        .preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--guinda-1); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.5s; }
-        .preloader.hidden { opacity: 0; visibility: hidden; }
-        .loader-img { width: 150px; animation: latido 2s infinite; }
-        @keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); opacity: 0.8; } }
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--guinda-1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-img {
+            width: 150px;
+            animation: latido 2s infinite;
+        }
+
+        @keyframes latido {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
 
         /* --- ANIMACIONES SCROLL (Entrada y Salida) --- */
         .reveal {
@@ -204,8 +432,9 @@
         }
     </style>
 </head>
+
 <body>
-    
+
     <div class="preloader" id="preloader">
         <img src="../models/images/semo.png" alt="Cargando..." class="loader-img">
     </div>
@@ -227,75 +456,87 @@
 
     <nav class="navbar navbar-expand-xl sticky-top main-nav shadow-sm p-0">
         <div class="container nav-content py-2">
-            
+
             <a class="navbar-brand d-flex align-items-center" href="../Portal.html">
-                <img src="../models/images/image.png" alt="Gobierno de Puebla" class="logo-img me-3" style="height: 50px;">
+                <img src="../models/images/image.png" alt="Gobierno de Puebla" class="logo-img me-3"
+                    style="height: 50px;">
                 <div class="d-none d-lg-block lh-1">
-                    <span class="d-block fw-bold text-guinda" style="color: var(--guinda-1); letter-spacing: 1px;">TRANSPARENCIA</span>
+                    <span class="d-block fw-bold text-guinda"
+                        style="color: var(--guinda-1); letter-spacing: 1px;">TRANSPARENCIA</span>
                     <span class="d-block fw-light text-muted">PRESUPUESTARIA</span>
                     <span class="d-block text-muted" style="font-size: 10px;">Gobierno del Estado de Puebla</span>
                 </div>
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Navegación">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                aria-label="Navegación">
                 <span class="fas fa-bars fs-2" style="color: var(--guinda-1);"></span>
             </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <ul class="navbar-nav align-items-center text-uppercase fw-bold">
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Ciclo-Presupuestario.html" class="nav-link">
                             <i class="fas fa-sync-alt me-1"></i> CICLO
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Planeacion.html" class="nav-link">
                             <i class="fas fa-chart-line me-1"></i> PLANEACIÓN
                         </a>
                     </li>
-                    
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fas fa-arrow-down me-1"></i> INGRESO
                         </a>
                         <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i
+                                        class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i
+                                        class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fas fa-arrow-up me-1"></i> GASTO
                         </a>
                         <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i class="fas fa-clipboard-list me-2"></i> Programas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i class="fas fa-university me-2"></i> Entidades Federativas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i
+                                        class="fas fa-clipboard-list me-2"></i> Programas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i
+                                        class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i
+                                        class="fas fa-university me-2"></i> Entidades Federativas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i
+                                        class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
                         </ul>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Sistema-Evaluacion-Desempeno.html" class="nav-link">
                             <i class="fas fa-chart-bar me-1"></i> EVALUACIÓN
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Datos-Abiertos.html" class="nav-link">
                             <i class="fas fa-database me-1"></i> DATOS
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Capacitacion.html" class="nav-link">
                             <i class="fas fa-graduation-cap me-1"></i> CAPACITACIÓN
                         </a>
                     </li>
-                    
+
                     <li class="nav-item ms-lg-2">
                         <button class="btn border-0 text-secondary fs-5"><i class="fas fa-search"></i></button>
                     </li>
@@ -308,13 +549,15 @@
         <div class="container">
             <h1>Ciclo Presupuestario</h1>
             <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
-              En esta sección encontrarás información sobre la manera en que el gobierno organiza el presupuesto, a través de siete etapas que permiten planear, presupuestar, ejecutar los recursos, dar seguimiento, evaluar su implementación y rendir cuentas a la ciudadanía.
+                En esta sección encontrarás información sobre la manera en que el gobierno organiza el presupuesto, a
+                través de siete etapas que permiten planear, presupuestar, ejecutar los recursos, dar seguimiento,
+                evaluar su implementación y rendir cuentas a la ciudadanía.
             </p>
         </div>
     </header>
 
     <div class="container mb-5">
-        
+
         <div class="featured-box" style="justify-content: flex-start; text-align: center;">
             <div class="featured-content" style="flex: 1;">
                 <h3>¿En qué consisten las etapas del ciclo presupuestario en México?</h3>
@@ -326,49 +569,57 @@
                 <div class="stage-content">
                     <div class="stage-number">1</div>
                     <h3 class="stage-title">Planeación</h3>
-                    <p>En esta etapa se establecen los objetivos, metas y acciones a los cuales se deberán enfocar los recursos públicos. En México, el principal instrumento de planeación es el Plan Nacional de Desarrollo (PND).</p>
+                    <p>En esta etapa se establecen los objetivos, metas y acciones a los cuales se deberán enfocar los
+                        recursos públicos. En México, el principal instrumento de planeación es el Plan Nacional de
+                        Desarrollo (PND).</p>
                 </div>
             </div>
             <div class="stage-container right">
                 <div class="stage-content">
                     <div class="stage-number">2</div>
                     <h3 class="stage-title">Programación</h3>
-                    <p>Durante la programación se definen los programas presupuestarios que tendrán a cargo las dependencias y entidades del Gobierno, así como los recursos necesarios.</p>
+                    <p>Durante la programación se definen los programas presupuestarios que tendrán a cargo las
+                        dependencias y entidades del Gobierno, así como los recursos necesarios.</p>
                 </div>
             </div>
             <div class="stage-container left">
                 <div class="stage-content">
                     <div class="stage-number">3</div>
                     <h3 class="stage-title">Presupuestación</h3>
-                    <p>En esta etapa se establece la cantidad, fuente de financiamiento y distribución de recursos aprobados por la Cámara de Diputados mediante Decreto.</p>
+                    <p>En esta etapa se establece la cantidad, fuente de financiamiento y distribución de recursos
+                        aprobados por la Cámara de Diputados mediante Decreto.</p>
                 </div>
             </div>
             <div class="stage-container right">
                 <div class="stage-content">
                     <div class="stage-number">4</div>
                     <h3 class="stage-title">Ejercicio y Control</h3>
-                    <p>El ejercicio y control del gasto busca promover el uso eficiente de los recursos públicos y se lleva a cabo durante todo el año fiscal.</p>
+                    <p>El ejercicio y control del gasto busca promover el uso eficiente de los recursos públicos y se
+                        lleva a cabo durante todo el año fiscal.</p>
                 </div>
             </div>
             <div class="stage-container left">
                 <div class="stage-content">
                     <div class="stage-number">5</div>
                     <h3 class="stage-title">Seguimiento</h3>
-                    <p>Durante esta etapa se lleva a cabo el control de las acciones realizadas a través de los programas presupuestarios mediante indicadores de desempeño.</p>
+                    <p>Durante esta etapa se lleva a cabo el control de las acciones realizadas a través de los
+                        programas presupuestarios mediante indicadores de desempeño.</p>
                 </div>
             </div>
             <div class="stage-container right">
                 <div class="stage-content">
                     <div class="stage-number">6</div>
                     <h3 class="stage-title">Evaluación</h3>
-                    <p>Durante esta etapa se analizan las recomendaciones y hallazgos derivados de las evaluaciones y se definen los Aspectos Susceptibles de Mejora (ASM).</p>
+                    <p>Durante esta etapa se analizan las recomendaciones y hallazgos derivados de las evaluaciones y se
+                        definen los Aspectos Susceptibles de Mejora (ASM).</p>
                 </div>
             </div>
             <div class="stage-container left">
                 <div class="stage-content">
                     <div class="stage-number">7</div>
                     <h3 class="stage-title">Rendición de Cuentas</h3>
-                    <p>Consiste en la obligación del Gobierno de informar sobre los resultados anuales de los ingresos, el gasto y el estado de la deuda a través de la Cuenta Pública.</p>
+                    <p>Consiste en la obligación del Gobierno de informar sobre los resultados anuales de los ingresos,
+                        el gasto y el estado de la deuda a través de la Cuenta Pública.</p>
                 </div>
             </div>
         </div>
@@ -380,7 +631,8 @@
             <div class="featured-content" style="flex: 1;">
                 <h3>Documentos Ciudadanos</h3>
                 <p style="opacity: 0.9;">
-                   Aquí encontrarás algunos de los documentos más relevantes sobre finanzas públicas, explicados de manera sencilla y en formatos accesibles.
+                    Aquí encontrarás algunos de los documentos más relevantes sobre finanzas públicas, explicados de
+                    manera sencilla y en formatos accesibles.
                 </p>
             </div>
         </div>
@@ -392,34 +644,44 @@
             <div class="row gy-4">
                 <div class="col-lg-4">
                     <div class="mb-3">
-                        <img src="../models/images/image.png" alt="Gobierno de Puebla" style="filter: brightness(0) invert(1); max-width: 180px;">
+                        <img src="../models/images/image.png" alt="Gobierno de Puebla"
+                            style="filter: brightness(0) invert(1); max-width: 180px;">
                     </div>
                     <div class="lh-1">
-                        <h4 class="h6 fw-bold text-crema" style="color: var(--crema-4);">TRANSPARENCIA PRESUPUESTARIA</h4>
+                        <h4 class="h6 fw-bold text-crema" style="color: var(--crema-4);">TRANSPARENCIA PRESUPUESTARIA
+                        </h4>
                         <p class="small opacity-75">Gobierno del Estado de Puebla</p>
                     </div>
                 </div>
-                
+
                 <div class="col-6 col-lg-2">
                     <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Transparencia</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Portal de Transparencia</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Información Pública</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Protección de Datos</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Avisos de Privacidad</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Portal de
+                                Transparencia</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Información
+                                Pública</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Protección de
+                                Datos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Avisos de
+                                Privacidad</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="col-6 col-lg-2">
                     <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Recursos</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Documentos Oficiales</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Leyes y Reglamentos</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Estadísticas</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">API Documentación</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Documentos
+                                Oficiales</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Leyes y
+                                Reglamentos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Estadísticas</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">API
+                                Documentación</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="col-lg-4 text-lg-end">
                     <div class="mb-4">
                         <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Contacto</h5>
@@ -440,7 +702,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="border-top border-secondary mt-4 pt-4 text-center small opacity-50">
                 <p class="mb-1">&copy; 2026 Gobierno del Estado de Puebla. Todos los derechos reservados.</p>
                 <p>Portal de Transparencia Presupuestaria | Versión 2.0</p>
@@ -448,33 +710,34 @@
         </div>
     </footer>
 
-    <script>    
-    
-    document.addEventListener("DOMContentLoaded", function() {
+    <script>
 
-        const targets = document.querySelectorAll('.stage-content');
+        document.addEventListener("DOMContentLoaded", function () {
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-     
-                if (entry.isIntersecting) {
-         
-                    entry.target.classList.add('visible');
-             
-                    observer.unobserve(entry.target); 
-                }
+            const targets = document.querySelectorAll('.stage-content');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('visible');
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2
             });
-        }, {
-            threshold: 0.2 
-        });
 
-        targets.forEach(target => {
-            observer.observe(target);
+            targets.forEach(target => {
+                observer.observe(target);
+            });
         });
-    });
-</script>
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../script.js"></script>
 </body>
+
 </html>

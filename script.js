@@ -119,15 +119,15 @@ const pagesData = {
 };
 
 // DOM Ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Preloader de 2 segundos
-    setTimeout(function() {
+    setTimeout(function () {
         const preloader = document.getElementById('preloader');
         preloader.classList.add('hidden');
-        
+
         // Habilitar scroll
         document.body.style.overflow = 'auto';
-        
+
         // Inicializar componentes después del preloader
         setTimeout(() => {
             initCarousel();
@@ -153,90 +153,90 @@ function initCarousel() {
     const indicators = document.querySelectorAll('.indicator');
     const prevBtn = document.querySelector('.carousel-prev');
     const nextBtn = document.querySelector('.carousel-next');
-    
+
     let currentSlide = 0;
     let slideInterval;
     const slideDuration = 5000; // 5 segundos
-    
+
     // Función para mostrar slide específico
     function showSlide(index) {
         // Asegurarse que el índice esté dentro del rango
         if (index < 0) index = slides.length - 1;
         if (index >= slides.length) index = 0;
-        
+
         // Ocultar todas las slides
         slides.forEach(slide => {
             slide.classList.remove('active');
         });
-        
+
         // Quitar activo de todos los indicadores
         indicators.forEach(indicator => {
             indicator.classList.remove('active');
         });
-        
+
         // Mostrar slide actual
         slides[index].classList.add('active');
         indicators[index].classList.add('active');
-        
+
         currentSlide = index;
     }
-    
+
     // Función para siguiente slide
     function nextSlide() {
         showSlide(currentSlide + 1);
     }
-    
+
     // Función para slide anterior
     function prevSlide() {
         showSlide(currentSlide - 1);
     }
-    
+
     // Iniciar autoplay
     function startAutoPlay() {
         slideInterval = setInterval(nextSlide, slideDuration);
     }
-    
+
     // Detener autoplay
     function stopAutoPlay() {
         clearInterval(slideInterval);
     }
-    
+
     // Event listeners para botones
     if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
+        prevBtn.addEventListener('click', function () {
             prevSlide();
             stopAutoPlay();
             startAutoPlay(); // Reiniciar autoplay después de interacción manual
         });
     }
-    
+
     if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
+        nextBtn.addEventListener('click', function () {
             nextSlide();
             stopAutoPlay();
             startAutoPlay(); // Reiniciar autoplay después de interacción manual
         });
     }
-    
+
     // Event listeners para indicadores
     indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', function() {
+        indicator.addEventListener('click', function () {
             showSlide(index);
             stopAutoPlay();
             startAutoPlay(); // Reiniciar autoplay después de interacción manual
         });
     });
-    
+
     // Pausar autoplay al pasar el mouse
     const carousel = document.querySelector('.carousel-container');
     if (carousel) {
         carousel.addEventListener('mouseenter', stopAutoPlay);
         carousel.addEventListener('mouseleave', startAutoPlay);
     }
-    
+
     // Iniciar autoplay
     startAutoPlay();
-    
+
     // Mostrar primer slide
     showSlide(0);
 }
@@ -246,13 +246,13 @@ function initMobileMenu() {
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
-    
+
     if (menuBtn && menu) {
-        menuBtn.addEventListener('click', function() {
+        menuBtn.addEventListener('click', function () {
             menu.classList.toggle('active');
             this.classList.toggle('active');
         });
-        
+
         // Cerrar al hacer clic en enlace
         const menuLinks = menu.querySelectorAll('a:not(.mobile-dropdown-toggle)');
         menuLinks.forEach(link => {
@@ -261,7 +261,7 @@ function initMobileMenu() {
                 menuBtn.classList.remove('active');
             });
         });
-        
+
         // Cerrar al hacer clic fuera
         document.addEventListener('click', (e) => {
             if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
@@ -270,15 +270,15 @@ function initMobileMenu() {
             }
         });
     }
-    
+
     // Submenús en móvil
     mobileDropdowns.forEach(dropdown => {
         const toggle = dropdown.querySelector('.mobile-dropdown-toggle');
         if (toggle) {
-            toggle.addEventListener('click', function(e) {
+            toggle.addEventListener('click', function (e) {
                 e.preventDefault();
                 dropdown.classList.toggle('active');
-                
+
                 // Cerrar otros dropdowns
                 mobileDropdowns.forEach(otherDropdown => {
                     if (otherDropdown !== dropdown) {
@@ -293,9 +293,9 @@ function initMobileMenu() {
 // Dropdowns en desktop
 function initDropdowns() {
     const dropdowns = document.querySelectorAll('.dropdown');
-    
+
     dropdowns.forEach(dropdown => {
-        dropdown.addEventListener('mouseenter', function() {
+        dropdown.addEventListener('mouseenter', function () {
             this.querySelector('.dropdown-menu').style.display = 'block';
             setTimeout(() => {
                 this.querySelector('.dropdown-menu').style.opacity = '1';
@@ -303,8 +303,8 @@ function initDropdowns() {
                 this.querySelector('.dropdown-menu').style.visibility = 'visible';
             }, 10);
         });
-        
-        dropdown.addEventListener('mouseleave', function() {
+
+        dropdown.addEventListener('mouseleave', function () {
             const menu = this.querySelector('.dropdown-menu');
             menu.style.opacity = '0';
             menu.style.transform = 'translateY(-10px)';
@@ -322,11 +322,11 @@ function initProfileCards() {
     const faqPanel = document.getElementById('faqPanel');
     const faqContent = document.getElementById('faqContent');
     let activeProfile = null;
-    
+
     cards.forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
             const profile = this.dataset.profile;
-            
+
             // Toggle active state
             if (activeProfile === profile) {
                 cards.forEach(c => c.classList.remove('active'));
@@ -334,18 +334,18 @@ function initProfileCards() {
                 activeProfile = null;
                 return;
             }
-            
+
             // Update active card
             cards.forEach(c => c.classList.remove('active'));
             this.classList.add('active');
             activeProfile = profile;
-            
+
             // Load FAQs
             loadFAQs(profile);
-            
+
             // Show panel
             faqPanel.classList.add('active');
-            
+
             // Scroll to panel on mobile
             if (window.innerWidth < 768) {
                 setTimeout(() => {
@@ -354,20 +354,20 @@ function initProfileCards() {
             }
         });
     });
-    
+
     function loadFAQs(profile) {
         const faqs = faqData[profile];
         if (!faqs) return;
-        
+
         const titles = {
             estudiante: 'Para Estudiantes',
             servidor: 'Para Servidores Públicos',
             investigador: 'Para Investigadores',
             desarrollador: 'Para Especialistas en Datos'
         };
-        
+
         let html = `<h3>Preguntas Frecuentes ${titles[profile]}</h3>`;
-        
+
         faqs.forEach((faq, index) => {
             html += `
                 <div class="faq-item" style="animation-delay: ${index * 0.1}s">
@@ -376,7 +376,7 @@ function initProfileCards() {
                 </div>
             `;
         });
-        
+
         faqContent.innerHTML = html;
     }
 }
@@ -384,58 +384,20 @@ function initProfileCards() {
 // Page Cards (los 10 contenedores)
 function initPageCards() {
     const pageCards = document.querySelectorAll('.page-card');
-    const pageLoader = document.getElementById('pageLoader');
-    
+
     pageCards.forEach(card => {
         // Efecto de hover mejorado
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-10px)';
             this.style.boxShadow = '0 15px 40px rgba(125, 36, 71, 0.3)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0)';
             this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
         });
-        
-        // Click para cargar página
-        card.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Si el href no empieza con #, dejar que el navegador maneje la navegación
-            // Opción visualmente más fluida:
-            if (href && !href.startsWith('#')) {
-             e.preventDefault(); // Detenemos el salto inmediato
-    
-    // Mostramos el loader bonito
-             pageLoader.classList.add('active'); 
-    
-    // Esperamos 500ms (medio segundo) y luego cambiamos de página
-                  setTimeout(() => {
-                  window.location.href = href;
-                   }, 500);
-                      return;
-                }
-            e.preventDefault();
-            const pageId = this.dataset.page;
-            
-            if (pagesData[pageId]) {
-                // Mostrar loader
-                pageLoader.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Simular carga de 2 segundos
-                setTimeout(() => {
-                    // Ocultar loader
-                    pageLoader.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                    
-                    // En un entorno real, aquí cargarías la página
-                    // Por ahora, mostramos un mensaje
-                    alert(`Redirigiendo a: ${pagesData[pageId].title}\n\n${pagesData[pageId].description}\n\nEn un entorno real, esto cargaría la página correspondiente.`);
-                }, 2000);
-            }
-        });
+
+        // NO interceptamos el click - dejamos que el <a href="..."> funcione naturalmente
     });
 }
 
@@ -445,19 +407,19 @@ function initPageLoader() {
     const quickAccessCards = document.querySelectorAll('.quick-access-card');
     const dropdownItems = document.querySelectorAll('.dropdown-item');
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-    
+
     // Función para simular carga de página
     function simulatePageLoad(pageId) {
         // Mostrar loader
         pageLoader.classList.add('active');
         document.body.style.overflow = 'hidden';
-        
+
         // Simular carga de 2 segundos
         setTimeout(() => {
             // Ocultar loader
             pageLoader.classList.remove('active');
             document.body.style.overflow = 'auto';
-            
+
             // En un entorno real, aquí cargarías la página
             if (pagesData[pageId]) {
                 alert(`Redirigiendo a: ${pagesData[pageId].title}\n\n${pagesData[pageId].description}\n\nEn un entorno real, esto cargaría la página correspondiente.`);
@@ -466,19 +428,19 @@ function initPageLoader() {
             }
         }, 2000);
     }
-    
+
     // Event listeners para tarjetas de acceso rápido
     quickAccessCards.forEach(card => {
-        card.addEventListener('click', function(e) {
+        card.addEventListener('click', function (e) {
             e.preventDefault();
             const pageId = this.dataset.page;
             simulatePageLoad(pageId);
         });
     });
-    
+
     // Event listeners para items del dropdown
     dropdownItems.forEach(item => {
-        item.addEventListener('click', function(e) {
+        item.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
 
             // --- CORRECCIÓN IMPORTANTE ---
@@ -493,11 +455,11 @@ function initPageLoader() {
             simulatePageLoad(pageId);
         });
     });
-    
+
     // Event listeners para enlaces de navegación principal
     navLinks.forEach(link => {
         if (!link.classList.contains('dropdown-toggle')) {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href.startsWith('#')) {
                     e.preventDefault();
@@ -514,17 +476,17 @@ function initSearch() {
     const searchBtn = document.querySelector('.main-search-btn');
     const searchInput = document.querySelector('.main-search-input');
     const tags = document.querySelectorAll('.tag');
-    
+
     if (searchBtn && searchInput) {
         searchBtn.addEventListener('click', performSearch);
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') performSearch();
         });
     }
-    
+
     if (tags) {
         tags.forEach(tag => {
-            tag.addEventListener('click', function(e) {
+            tag.addEventListener('click', function (e) {
                 e.preventDefault();
                 const text = this.textContent.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '').trim();
                 if (searchInput) {
@@ -534,7 +496,7 @@ function initSearch() {
             });
         });
     }
-    
+
     function performSearch() {
         const query = searchInput.value.trim();
         if (query) {
@@ -542,12 +504,12 @@ function initSearch() {
             const pageLoader = document.getElementById('pageLoader');
             pageLoader.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
+
             // Simular búsqueda de 2 segundos
             setTimeout(() => {
                 pageLoader.classList.remove('active');
                 document.body.style.overflow = 'auto';
-                
+
                 // En un entorno real, aquí iría la búsqueda AJAX
                 console.log('Buscando:', query);
                 alert(`Resultados de búsqueda para: "${query}"\n\nEn un entorno real, esto mostraría los resultados de búsqueda.`);
@@ -561,18 +523,18 @@ function initSearch() {
 // Smooth Scroll
 function initSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
-    
+
     links.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href === '#' || href === '#!') return;
-            
+
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
                 const offset = 80;
                 const elementPosition = target.offsetTop - offset;
-                
+
                 window.scrollTo({
                     top: elementPosition,
                     behavior: 'smooth'
@@ -595,10 +557,10 @@ function initCounters() {
             }
         });
     }, { threshold: 0.5 });
-    
+
     const section = document.querySelector('.indicators-section');
     if (section) observer.observe(section);
-    
+
     function animateCounter(element) {
         const target = parseFloat(element.textContent.replace(/[^0-9.]/g, ''));
         const suffix = element.textContent.replace(/[0-9.]/g, '');
@@ -610,13 +572,13 @@ function initCounters() {
                 current = target;
                 clearInterval(timer);
             }
-            element.textContent = suffix.includes('B') 
+            element.textContent = suffix.includes('B')
                 ? `$${current.toFixed(1)}B`
                 : suffix.includes('%')
-                ? `${Math.round(current)}%`
-                : suffix.includes('+')
-                ? `${Math.round(current)}+`
-                : Math.round(current);
+                    ? `${Math.round(current)}%`
+                    : suffix.includes('+')
+                        ? `${Math.round(current)}+`
+                        : Math.round(current);
         }, 30);
     }
 }
@@ -632,7 +594,7 @@ function initAnimations() {
             }
         });
     }, { threshold: 0.1 });
-    
+
     // Animar tarjetas de página
     const pageCards = document.querySelectorAll('.page-card');
     pageCards.forEach(card => {
@@ -641,7 +603,7 @@ function initAnimations() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
-    
+
     // Animar tarjetas de perfil
     const profileCards = document.querySelectorAll('.profile-card');
     profileCards.forEach(card => {
@@ -650,7 +612,7 @@ function initAnimations() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
-    
+
     // Animar tarjetas de acceso rápido
     const quickAccessCards = document.querySelectorAll('.quick-access-card');
     quickAccessCards.forEach(card => {
@@ -659,7 +621,7 @@ function initAnimations() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
-    
+
     // Sticky nav con sombra
     window.addEventListener('scroll', () => {
         const nav = document.querySelector('.main-nav');

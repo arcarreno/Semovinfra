@@ -1,56 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Evaluación del Desempeño - Transparencia Presupuestaria Puebla</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../styles.css">
-    
+
     <style>
+        @media (max-width: 1199.98px) {
 
-           @media (max-width: 1199.98px) {
-    /*  Fondo guinda sólido para el panel desplegable completo */
-    .navbar-collapse {
-        background-color: var(--guinda-1);
-        padding: 15px;
-        margin-top: 10px;
-        border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Sombra para que resalte */
-    }
+            /*  Fondo guinda sólido para el panel desplegable completo */
+            .navbar-collapse {
+                background-color: var(--guinda-1);
+                padding: 15px;
+                margin-top: 10px;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                /* Sombra para que resalte */
+            }
 
-    /* Letras blancas para los enlaces principales */
-    .navbar-collapse .nav-link {
-        color: #ffffff !important;
-        border-radius: 5px;
-    }
+            /* Letras blancas para los enlaces principales */
+            .navbar-collapse .nav-link {
+                color: #ffffff !important;
+                border-radius: 5px;
+            }
 
-    /* Fondo guinda también para los submenús (Ingreso, Gasto) y quitar su borde superior */
-    .navbar-collapse .dropdown-menu {
-        background-color: transparent;
-        border: none;
-        padding-left: 15px; /* Sangría para diferenciar el submenú */
-        margin-top: 0;
-    }
+            /* Fondo guinda también para los submenús (Ingreso, Gasto) y quitar su borde superior */
+            .navbar-collapse .dropdown-menu {
+                background-color: transparent;
+                border: none;
+                padding-left: 15px;
+                /* Sangría para diferenciar el submenú */
+                margin-top: 0;
+            }
 
-    /*  Letras blancas para los elementos dentro de los submenús */
-    .navbar-collapse .dropdown-item {
-        color: #ffffff !important;
-        border-radius: 5px;
-    }
+            /*  Letras blancas para los elementos dentro de los submenús */
+            .navbar-collapse .dropdown-item {
+                color: #ffffff !important;
+                border-radius: 5px;
+            }
 
-    /*  Efecto Hover al pasar el dedo/mouse en móvil (Fondo traslúcido y letras doradas) */
-    .navbar-collapse .nav-link:hover, 
-    .navbar-collapse .dropdown-item:hover,
-    .navbar-collapse .nav-link.active {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        color: var(--dorado-8) !important;
-    }
-}
-       
+            /*  Efecto Hover al pasar el dedo/mouse en móvil (Fondo traslúcido y letras doradas) */
+            .navbar-collapse .nav-link:hover,
+            .navbar-collapse .dropdown-item:hover,
+            .navbar-collapse .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.1) !important;
+                color: var(--dorado-8) !important;
+            }
+        }
+
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -60,7 +65,7 @@
         /* --- ESTILOS DE NAVEGACIÓN UNIFICADOS --- */
         .top-bar {
             background-color: var(--guinda-1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.85rem;
         }
 
@@ -68,7 +73,7 @@
             background-color: #fff;
             border-bottom: 4px solid var(--dorado-8);
         }
-        
+
         .nav-link {
             color: var(--gris-2) !important;
             font-weight: 600;
@@ -76,8 +81,9 @@
             padding: 10px 15px !important;
             transition: all 0.3s;
         }
-        
-        .nav-link:hover, .dropdown-item:hover {
+
+        .nav-link:hover,
+        .dropdown-item:hover {
             color: var(--guinda-1) !important;
             background-color: rgba(219, 198, 179, 0.2);
         }
@@ -89,16 +95,17 @@
 
         /* --- ESTILOS ESPECÍFICOS DE EVALUACIÓN (Intactos) --- */
         .page-header {
-            background: linear-gradient(135deg, var(--guinda-1), var(--verde-3)), url('../models/images/banner_home.png'); 
+            background-color: var(--guinda-1);
+            background-image: url('../models/images/banner_home.png');
             background-size: cover;
             background-position: center;
-            background-blend-mode: multiply;
+            background-repeat: no-repeat;
             color: var(--blanco);
             padding: 100px 0 60px;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
             margin-bottom: 40px;
             border-bottom: 5px solid var(--dorado-8);
+            position: relative;
         }
 
         .page-header h1 {
@@ -108,6 +115,39 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 2px 2px 0px var(--verde-3);
+        }
+
+        /* --- RESPONSIVE PAGE HEADER --- */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 60px 20px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+                word-break: break-word;
+            }
+
+            .page-header p {
+                font-size: 1rem !important;
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 45px 15px 30px;
+            }
+
+            .page-header h1 {
+                font-size: 1.4rem;
+                letter-spacing: 0.5px;
+            }
+
+            .page-header p {
+                font-size: 0.85rem !important;
+            }
         }
 
         .process-grid {
@@ -189,34 +229,88 @@
             text-transform: uppercase;
             line-height: 1.4;
         }
-        
+
         .custom-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.9rem;
             background: var(--blanco);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
-        .custom-table th { background: var(--guinda-1); color: white; padding: 15px; text-align: left; }
-        .custom-table td { padding: 15px; border-bottom: 1px solid var(--crema-4); color: var(--gris-2); }
-        .custom-table tr:hover { background: rgba(125, 36, 71, 0.05); }
+
+        .custom-table th {
+            background: var(--guinda-1);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .custom-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--crema-4);
+            color: var(--gris-2);
+        }
+
+        .custom-table tr:hover {
+            background: rgba(125, 36, 71, 0.05);
+        }
 
         /* Preloader */
         .preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: var(--guinda-1);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        .preloader.hidden { opacity: 0; visibility: hidden; }
-        .loader-img { width: 150px; height: auto; animation: latido 2s infinite ease-in-out; }
-        @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.1); opacity: 0.8; } 100% { transform: scale(1); } }
-        
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-img {
+            width: 150px;
+            height: auto;
+            animation: latido 2s infinite ease-in-out;
+        }
+
+        @keyframes latido {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
         /* Títulos de sección */
-        .section-title { color: var(--guinda-1); font-weight: 700; margin-bottom: 15px; }
-        .section-subtitle { color: var(--gris-2); font-size: 1.1rem; margin-bottom: 40px; }
+        .section-title {
+            color: var(--guinda-1);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: var(--gris-2);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="preloader" id="preloader">
@@ -240,17 +334,21 @@
 
     <nav class="navbar navbar-expand-xl sticky-top main-nav shadow-sm p-0">
         <div class="container nav-content py-2">
-            
+
             <a class="navbar-brand d-flex align-items-center" href="../Portal.html">
-                <img src="../models/images/image.png" alt="Gobierno de Puebla" class="logo-img me-3" style="height: 50px;">
+                <img src="../models/images/image.png" alt="Gobierno de Puebla" class="logo-img me-3"
+                    style="height: 50px;">
                 <div class="d-none d-lg-block lh-1">
-                    <span class="d-block fw-bold text-guinda" style="color: var(--guinda-1); letter-spacing: 1px;">TRANSPARENCIA</span>
+                    <span class="d-block fw-bold text-guinda"
+                        style="color: var(--guinda-1); letter-spacing: 1px;">TRANSPARENCIA</span>
                     <span class="d-block fw-light text-muted">PRESUPUESTARIA</span>
                     <span class="d-block text-muted" style="font-size: 10px;">Gobierno del Estado de Puebla</span>
                 </div>
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Navegación">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                aria-label="Navegación">
                 <span class="fas fa-bars fs-2" style="color: var(--guinda-1);"></span>
             </button>
 
@@ -267,23 +365,31 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fas fa-arrow-down me-1"></i> INGRESO
                         </a>
                         <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i
+                                        class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i
+                                        class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fas fa-arrow-up me-1"></i> GASTO
                         </a>
                         <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i class="fas fa-clipboard-list me-2"></i> Programas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i class="fas fa-university me-2"></i> Entidades Federativas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i
+                                        class="fas fa-clipboard-list me-2"></i> Programas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i
+                                        class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i
+                                        class="fas fa-university me-2"></i> Entidades Federativas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i
+                                        class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -313,50 +419,71 @@
         <div class="container">
             <h1>Sistema de Evaluación del Desempeño</h1>
             <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
-               Esta sección explica el Sistema de Evaluación del Desempeño, es decir, la forma en cómo se evalúa el cumplimiento de las metas y objetivos de los Programas presupuestarios y Políticas Públicas del Gobierno Federal. Aquí podrás consultar las evaluaciones realizadas y los Aspectos Susceptibles de Mejora (ASM) derivados de éstas, así como documentos relevantes y datos abiertos.
+                Esta sección explica el Sistema de Evaluación del Desempeño, es decir, la forma en cómo se evalúa el
+                cumplimiento de las metas y objetivos de los Programas presupuestarios y Políticas Públicas del Gobierno
+                Federal. Aquí podrás consultar las evaluaciones realizadas y los Aspectos Susceptibles de Mejora (ASM)
+                derivados de éstas, así como documentos relevantes y datos abiertos.
             </p>
         </div>
     </header>
 
     <div class="container" style="margin-bottom: 80px;">
-        
+
         <h2 class="section-title">¿Qué es el SED?</h2>
-        <p class="section-subtitle">El Sistema de Evaluación del Desempeño (SED) es el conjunto de elementos metodológicos utilizados para establecer los objetivos de los Programas y Políticas Públicas, medir sus avances, evaluar desde su diseño hasta sus resultados y mejorar su implementación. Está organizado en dos fases: el seguimiento y la evaluación, que se explican a continuación.</p>
+        <p class="section-subtitle">El Sistema de Evaluación del Desempeño (SED) es el conjunto de elementos
+            metodológicos utilizados para establecer los objetivos de los Programas y Políticas Públicas, medir sus
+            avances, evaluar desde su diseño hasta sus resultados y mejorar su implementación. Está organizado en dos
+            fases: el seguimiento y la evaluación, que se explican a continuación.</p>
 
         <div class="process-grid">
             <div class="process-card">
                 <span class="step-number">1</span>
                 <div class="process-content">
                     <h3 class="process-title">Seguimiento</h3>
-                    <p>El seguimiento es la supervisión del avance en el cumplimiento de los objetivos y metas de los Programas y Políticas Públicas, permite obtener información sobre las acciones realizadas y, de ser necesario, hacer adecuaciones para su mejora. Esto se realiza a través de indicadores establecidos en los Instrumentos de Seguimiento del Desempeño (ISD).</p>
+                    <p>El seguimiento es la supervisión del avance en el cumplimiento de los objetivos y metas de los
+                        Programas y Políticas Públicas, permite obtener información sobre las acciones realizadas y, de
+                        ser necesario, hacer adecuaciones para su mejora. Esto se realiza a través de indicadores
+                        establecidos en los Instrumentos de Seguimiento del Desempeño (ISD).</p>
                 </div>
             </div>
             <div class="process-card">
                 <span class="step-number">2</span>
                 <div class="process-content">
                     <h3 class="process-title">Indicadores</h3>
-                    <p>Los indicadores de desempeño son herramientas que sirven para medir el logro de objetivos de los Programas presupuestarios. Proporcionan información del panorama en el que inicia su implementación (línea base), miden el avance de sus procesos (seguimiento) y el cumplimiento de sus objetivos (metas). Las instituciones que operan los programas se encargan de monitorear y reportar continuamente el resultado de estos indicadores ante la SHCP.</p>
+                    <p>Los indicadores de desempeño son herramientas que sirven para medir el logro de objetivos de los
+                        Programas presupuestarios. Proporcionan información del panorama en el que inicia su
+                        implementación (línea base), miden el avance de sus procesos (seguimiento) y el cumplimiento de
+                        sus objetivos (metas). Las instituciones que operan los programas se encargan de monitorear y
+                        reportar continuamente el resultado de estos indicadores ante la SHCP.</p>
                 </div>
             </div>
             <div class="process-card">
                 <span class="step-number">3</span>
                 <div class="process-content">
                     <h3 class="process-title">Evaluación</h3>
-                    <p>La evaluación es la valoración del diseño, operación, efecto o impacto de los Programas y Políticas Públicas. Permite obtener información acerca de las acciones del gobierno sobre una población o área específica e identificar aspectos por mejorar. Para determinar qué Programas y Políticas serán evaluados en un año en específico y el tipo de evaluaciones que se les aplicará, la SHCP y el CONEVAL emiten el Programa Anual de Evaluación (PAE).</p>
+                    <p>La evaluación es la valoración del diseño, operación, efecto o impacto de los Programas y
+                        Políticas Públicas. Permite obtener información acerca de las acciones del gobierno sobre una
+                        población o área específica e identificar aspectos por mejorar. Para determinar qué Programas y
+                        Políticas serán evaluados en un año en específico y el tipo de evaluaciones que se les aplicará,
+                        la SHCP y el CONEVAL emiten el Programa Anual de Evaluación (PAE).</p>
                 </div>
             </div>
             <div class="process-card">
                 <span class="step-number">4</span>
                 <div class="process-content">
                     <h3 class="process-title">Mejora (ASM)</h3>
-                    <p>La evaluación es la valoración del diseño, operación, efecto o impacto de los Programas y Políticas Públicas. Permite obtener información acerca de las acciones del gobierno sobre una población o área específica e identificar aspectos por mejorar. Para determinar qué Programas y Políticas serán evaluados en un año en específico y el tipo de evaluaciones que se les aplicará, la SHCP y el CONEVAL emiten el Programa Anual de Evaluación (PAE).</p>
+                    <p>La evaluación es la valoración del diseño, operación, efecto o impacto de los Programas y
+                        Políticas Públicas. Permite obtener información acerca de las acciones del gobierno sobre una
+                        población o área específica e identificar aspectos por mejorar. Para determinar qué Programas y
+                        Políticas serán evaluados en un año en específico y el tipo de evaluaciones que se les aplicará,
+                        la SHCP y el CONEVAL emiten el Programa Anual de Evaluación (PAE).</p>
                 </div>
             </div>
         </div>
 
         <h2 class="section-title">Sustento Normativo</h2>
         <p class="section-subtitle">Artículos constitucionales y leyes que fundamentan la evaluación.</p>
-        
+
         <div class="legal-grid">
             <div class="legal-card">
                 <span class="article-num">Art. 6</span>
@@ -395,21 +522,24 @@
                             <td>Desempeño</td>
                             <td>2025</td>
                             <td>CONEVAL</td>
-                            <td><a href="#" style="color:var(--guinda-1); font-weight:bold;"><i class="fas fa-file-pdf"></i> Descargar</a></td>
+                            <td><a href="#" style="color:var(--guinda-1); font-weight:bold;"><i
+                                        class="fas fa-file-pdf"></i> Descargar</a></td>
                         </tr>
                         <tr>
                             <td>Infraestructura Social</td>
                             <td>Consistencia y Resultados</td>
                             <td>2025</td>
                             <td>Evaluador Externo</td>
-                            <td><a href="#" style="color:var(--guinda-1); font-weight:bold;"><i class="fas fa-file-pdf"></i> Descargar</a></td>
+                            <td><a href="#" style="color:var(--guinda-1); font-weight:bold;"><i
+                                        class="fas fa-file-pdf"></i> Descargar</a></td>
                         </tr>
                         <tr>
                             <td>Salud para Todos</td>
                             <td>Procesos</td>
                             <td>2024</td>
                             <td>Universidad Estatal</td>
-                            <td><a href="#" style="color:var(--guinda-1); font-weight:bold;"><i class="fas fa-file-pdf"></i> Descargar</a></td>
+                            <td><a href="#" style="color:var(--guinda-1); font-weight:bold;"><i
+                                        class="fas fa-file-pdf"></i> Descargar</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -423,34 +553,44 @@
             <div class="row gy-4">
                 <div class="col-lg-4">
                     <div class="mb-3">
-                        <img src="../models/images/image.png" alt="Gobierno de Puebla" style="filter: brightness(0) invert(1); max-width: 180px;">
+                        <img src="../models/images/image.png" alt="Gobierno de Puebla"
+                            style="filter: brightness(0) invert(1); max-width: 180px;">
                     </div>
                     <div class="lh-1">
-                        <h4 class="h6 fw-bold text-crema" style="color: var(--crema-4);">TRANSPARENCIA PRESUPUESTARIA</h4>
+                        <h4 class="h6 fw-bold text-crema" style="color: var(--crema-4);">TRANSPARENCIA PRESUPUESTARIA
+                        </h4>
                         <p class="small opacity-75">Gobierno del Estado de Puebla</p>
                     </div>
                 </div>
-                
+
                 <div class="col-6 col-lg-2">
                     <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Transparencia</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Portal de Transparencia</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Información Pública</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Protección de Datos</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Avisos de Privacidad</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Portal de
+                                Transparencia</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Información
+                                Pública</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Protección de
+                                Datos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Avisos de
+                                Privacidad</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="col-6 col-lg-2">
                     <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Recursos</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Documentos Oficiales</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Leyes y Reglamentos</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Estadísticas</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">API Documentación</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Documentos
+                                Oficiales</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Leyes y
+                                Reglamentos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Estadísticas</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">API
+                                Documentación</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="col-lg-4 text-lg-end">
                     <div class="mb-4">
                         <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Contacto</h5>
@@ -471,7 +611,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="border-top border-secondary mt-4 pt-4 text-center small opacity-50">
                 <p class="mb-1">&copy; 2026 Gobierno del Estado de Puebla. Todos los derechos reservados.</p>
                 <p>Portal de Transparencia Presupuestaria | Versión 2.0</p>
@@ -482,7 +622,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../script.js"></script>
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const preloader = document.getElementById('preloader');
             if (preloader) {
                 preloader.style.display = 'none';
@@ -490,4 +630,5 @@
         });
     </script>
 </body>
+
 </html>

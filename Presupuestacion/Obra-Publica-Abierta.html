@@ -1,71 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obra Pública Abierta - Transparencia Presupuestaria Puebla</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
+
     <link rel="stylesheet" href="../styles.css">
-    
+
     <style>
+        @media (max-width: 1199.98px) {
 
-         @media (max-width: 1199.98px) {
-    /*  Fondo guinda sólido para el panel desplegable completo */
-    .navbar-collapse {
-        background-color: var(--guinda-1);
-        padding: 15px;
-        margin-top: 10px;
-        border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Sombra para que resalte */
-    }
+            /*  Fondo guinda sólido para el panel desplegable completo */
+            .navbar-collapse {
+                background-color: var(--guinda-1);
+                padding: 15px;
+                margin-top: 10px;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                /* Sombra para que resalte */
+            }
 
-    /*  Letras blancas para los enlaces principales */
-    .navbar-collapse .nav-link {
-        color: #ffffff !important;
-        border-radius: 5px;
-    }
+            /*  Letras blancas para los enlaces principales */
+            .navbar-collapse .nav-link {
+                color: #ffffff !important;
+                border-radius: 5px;
+            }
 
-    /* Fondo guinda también para los submenús (Ingreso, Gasto) y quitar su borde superior */
-    .navbar-collapse .dropdown-menu {
-        background-color: transparent;
-        border: none;
-        padding-left: 15px; /* Sangría para diferenciar el submenú */
-        margin-top: 0;
-    }
+            /* Fondo guinda también para los submenús (Ingreso, Gasto) y quitar su borde superior */
+            .navbar-collapse .dropdown-menu {
+                background-color: transparent;
+                border: none;
+                padding-left: 15px;
+                /* Sangría para diferenciar el submenú */
+                margin-top: 0;
+            }
 
-    /* Letras blancas para los elementos dentro de los submenús */
-    .navbar-collapse .dropdown-item {
-        color: #ffffff !important;
-        border-radius: 5px;
-    }
+            /* Letras blancas para los elementos dentro de los submenús */
+            .navbar-collapse .dropdown-item {
+                color: #ffffff !important;
+                border-radius: 5px;
+            }
 
-    /* Efecto Hover al pasar el dedo/mouse en móvil (Fondo traslúcido y letras doradas) */
-    .navbar-collapse .nav-link:hover, 
-    .navbar-collapse .dropdown-item:hover,
-    .navbar-collapse .nav-link.active {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        color: var(--dorado-8) !important;
-    }
-}
+            /* Efecto Hover al pasar el dedo/mouse en móvil (Fondo traslúcido y letras doradas) */
+            .navbar-collapse .nav-link:hover,
+            .navbar-collapse .dropdown-item:hover,
+            .navbar-collapse .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.1) !important;
+                color: var(--dorado-8) !important;
+            }
+        }
 
-         .featured-box {
+        .featured-box {
             background-color: var(--verde-3);
             color: var(--blanco);
-            border-radius: 12px;
+            border-radius: 20px;
             padding: 40px;
             display: flex;
-            flex-direction: column; /* Móvil: columna */
+            flex-direction: column;
+            /* Móvil: columna */
             align-items: center;
             gap: 30px;
             margin-bottom: 60px;
-            border-left: 10px solid var(--dorado-8);
+            margin-left: auto;
+            margin-right: auto;
+            border: 3px solid var(--dorado-8);
+            box-shadow: 0 10px 30px rgba(125, 36, 71, 0.2);
+            max-width: 1200px;
         }
 
         /* En pantallas grandes, cambia a fila */
@@ -89,16 +99,17 @@
 
         /* --- ESTILOS GENERALES Y HEADER --- */
         .page-header {
-            background: linear-gradient(135deg, var(--guinda-1), var(--verde-3)), url('../models/images/banner_home.png');
+            background-color: var(--guinda-1);
+            background-image: url('../models/images/banner_home.png');
             background-size: cover;
             background-position: center;
-            background-blend-mode: multiply;
+            background-repeat: no-repeat;
             color: var(--blanco);
             padding: 100px 0 60px;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
             margin-bottom: 40px;
             border-bottom: 5px solid var(--dorado-8);
+            position: relative;
         }
 
         .page-header h1 {
@@ -110,19 +121,55 @@
             text-shadow: 2px 2px 0px var(--verde-3);
         }
 
+        /* --- RESPONSIVE PAGE HEADER --- */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 60px 20px 40px;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+                word-break: break-word;
+            }
+
+            .page-header p {
+                font-size: 1rem !important;
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 45px 15px 30px;
+            }
+
+            .page-header h1 {
+                font-size: 1.4rem;
+                letter-spacing: 0.5px;
+            }
+
+            .page-header p {
+                font-size: 0.85rem !important;
+            }
+        }
+
         /* --- MAPA --- */
         .map-container {
             height: 600px;
             width: 100%;
             border-radius: 12px;
             border: 2px solid var(--dorado-8);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             position: relative;
             z-index: 1;
         }
 
-        #map { height: 100%; width: 100%; }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
 
         /* --- FILTRO FLOTANTE PREMIUM (ESTILOS INTEGRADOS) --- */
         .floating-filters {
@@ -134,14 +181,20 @@
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .floating-filters.collapsed { transform: translateX(100%); }
-        .floating-filters.active { transform: translateX(0); }
+        .floating-filters.collapsed {
+            transform: translateX(100%);
+        }
+
+        .floating-filters.active {
+            transform: translateX(0);
+        }
 
         .filter-content {
             background: linear-gradient(135deg, var(--guinda-1) 0%, #5a122e 100%);
             padding: 30px 25px;
-            border-radius: 30px 0 0 30px; /* Redondeado solo izquierda */
-            box-shadow: -10px 10px 30px rgba(0,0,0,0.3);
+            border-radius: 30px 0 0 30px;
+            /* Redondeado solo izquierda */
+            box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.3);
             border-left: 5px solid var(--dorado-8);
             color: white;
         }
@@ -156,10 +209,12 @@
             color: var(--crema-4);
             border: none;
             border-radius: 15px 0 0 15px;
-            box-shadow: -5px 5px 15px rgba(0,0,0,0.2);
+            box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             font-size: 1.3rem;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s ease;
         }
 
@@ -181,7 +236,9 @@
             display: block;
         }
 
-        .input-wrapper { position: relative; }
+        .input-wrapper {
+            position: relative;
+        }
 
         .custom-select {
             border-radius: 50px;
@@ -191,8 +248,8 @@
             color: var(--gris-2);
             background-color: #fff;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            appearance: none; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            appearance: none;
             -webkit-appearance: none;
         }
 
@@ -204,7 +261,8 @@
 
         .select-arrow {
             position: absolute;
-            right: 20px; top: 50%;
+            right: 20px;
+            top: 50%;
             transform: translateY(-50%);
             color: var(--guinda-1);
             pointer-events: none;
@@ -222,7 +280,7 @@
             border: 2px solid var(--crema-4);
             transition: all 0.3s;
             text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             width: 100%;
             margin-top: 10px;
         }
@@ -240,8 +298,9 @@
             border-radius: 8px;
             text-align: center;
             border-bottom: 4px solid var(--verde-3);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            height: 100%; /* Para que tengan la misma altura */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            /* Para que tengan la misma altura */
         }
 
         .stat-number {
@@ -259,32 +318,60 @@
 
         /* Preloader */
         .preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: var(--guinda-1);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        .preloader.hidden { opacity: 0; visibility: hidden; }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
         .loader-img {
-            width: 150px; height: auto; object-fit: contain;
+            width: 150px;
+            height: auto;
+            object-fit: contain;
             animation: latido 2s infinite ease-in-out;
         }
+
         @keyframes latido {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
         }
 
         .featured-box {
             background-color: var(--verde-3);
             color: var(--blanco);
-            border-radius: 12px;
+            border-radius: 20px;
             padding: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 30px;
             margin-bottom: 60px;
-            border-left: 10px solid var(--dorado-8);
+            margin-left: auto;
+            margin-right: auto;
+            border: 3px solid var(--dorado-8);
+            box-shadow: 0 10px 30px rgba(125, 36, 71, 0.2);
+            max-width: 1200px;
         }
 
         @media (min-width: 768px) {
@@ -306,6 +393,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="preloader" id="preloader">
@@ -329,75 +417,87 @@
 
     <nav class="navbar navbar-expand-xl sticky-top main-nav shadow-sm p-0">
         <div class="container nav-content py-2">
-            
+
             <a class="navbar-brand d-flex align-items-center" href="../Portal.html">
-                <img src="../models/images/image.png" alt="Gobierno de Puebla" class="logo-img me-3" style="height: 50px;">
+                <img src="../models/images/image.png" alt="Gobierno de Puebla" class="logo-img me-3"
+                    style="height: 50px;">
                 <div class="d-none d-lg-block lh-1">
-                    <span class="d-block fw-bold text-guinda" style="color: var(--guinda-1); letter-spacing: 1px;">TRANSPARENCIA</span>
+                    <span class="d-block fw-bold text-guinda"
+                        style="color: var(--guinda-1); letter-spacing: 1px;">TRANSPARENCIA</span>
                     <span class="d-block fw-light text-muted">PRESUPUESTARIA</span>
                     <span class="d-block text-muted" style="font-size: 10px;">Gobierno del Estado de Puebla</span>
                 </div>
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Navegación">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                aria-label="Navegación">
                 <span class="fas fa-bars fs-2" style="color: var(--guinda-1);"></span>
             </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <ul class="navbar-nav align-items-center text-uppercase fw-bold">
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Ciclo-Presupuestario.html" class="nav-link">
                             <i class="fas fa-sync-alt me-1"></i> CICLO
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Planeacion.html" class="nav-link">
                             <i class="fas fa-chart-line me-1"></i> PLANEACIÓN
                         </a>
                     </li>
-                    
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fas fa-arrow-down me-1"></i> INGRESO
                         </a>
                         <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i
+                                        class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i
+                                        class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fas fa-arrow-up me-1"></i> GASTO
                         </a>
                         <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i class="fas fa-clipboard-list me-2"></i> Programas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i class="fas fa-university me-2"></i> Entidades Federativas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i
+                                        class="fas fa-clipboard-list me-2"></i> Programas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i
+                                        class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i
+                                        class="fas fa-university me-2"></i> Entidades Federativas</a></li>
+                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i
+                                        class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
                         </ul>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Sistema-Evaluacion-Desempeno.html" class="nav-link">
                             <i class="fas fa-chart-bar me-1"></i> EVALUACIÓN
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Datos-Abiertos.html" class="nav-link">
                             <i class="fas fa-database me-1"></i> DATOS
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a href="../Presupuestacion/Capacitacion.html" class="nav-link">
                             <i class="fas fa-graduation-cap me-1"></i> CAPACITACIÓN
                         </a>
                     </li>
-                    
+
                     <li class="nav-item ms-lg-2">
                         <button class="btn border-0 text-secondary fs-5"><i class="fas fa-search"></i></button>
                     </li>
@@ -410,7 +510,8 @@
         <div class="container">
             <h1>Obra Pública Abierta</h1>
             <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
-                En esta sección encontrarás información sobre los recursos que las instituciones del Gobierno Federal destinan a proyectos de inversión.
+                En esta sección encontrarás información sobre los recursos que las instituciones del Gobierno Federal
+                destinan a proyectos de inversión.
             </p>
         </div>
     </header>
@@ -418,19 +519,22 @@
     <div class="container">
         <div class="featured-box">
             <div class="featured-icon">
-                <i class="fas fa-search"></i> </div>
+                <i class="fas fa-search"></i>
+            </div>
             <div class="featured-content" style="flex: 1;">
                 <h3>¿Cómo localizo una obra pública?</h3>
                 <p style="opacity: 0.9;">
-                   Para obtener más información sobre obras públicas en México, da clic en su punto de ubicación en el mapa e ingresa a la ficha con los detalles.
-                   Puedes utilizar los buscadores para localizar un proyecto por nombre, clave de cartera o los filtros.
+                    Para obtener más información sobre obras públicas en México, da clic en su punto de ubicación en el
+                    mapa e ingresa a la ficha con los detalles.
+                    Puedes utilizar los buscadores para localizar un proyecto por nombre, clave de cartera o los
+                    filtros.
                 </p>
             </div>
         </div>
     </div>
 
     <div class="container" style="margin-bottom: 80px;">
-        
+
         <div class="row g-3 mb-5">
             <div class="col-6 col-md-3">
                 <div class="stat-card">
@@ -463,9 +567,9 @@
 
         <div class="map-container">
             <div id="map"></div>
-            
+
             <div id="floatingFilters" class="floating-filters collapsed">
-                
+
                 <button id="filterTabBtn" class="filter-tab" title="Abrir Filtros">
                     <i class="fas fa-filter"></i>
                 </button>
@@ -475,7 +579,7 @@
                         <h4 class="m-0"><i class="fas fa-search-location me-2"></i>Buscador</h4>
                         <p class="small text-white-50 m-0">Selecciona criterios</p>
                     </div>
-                    
+
                     <div class="filter-block mb-3">
                         <label class="filter-label"><i class="fas fa-map-marker-alt"></i> Municipio</label>
                         <div class="input-wrapper">
@@ -488,7 +592,7 @@
                             <i class="fas fa-chevron-down select-arrow"></i>
                         </div>
                     </div>
-                    
+
                     <div class="filter-block mb-3">
                         <label class="filter-label"><i class="fas fa-hard-hat"></i> Sector</label>
                         <div class="input-wrapper">
@@ -501,7 +605,7 @@
                             <i class="fas fa-chevron-down select-arrow"></i>
                         </div>
                     </div>
-                    
+
                     <div class="filter-block mb-4">
                         <label class="filter-label"><i class="fas fa-tasks"></i> Estatus</label>
                         <div class="input-wrapper">
@@ -513,7 +617,7 @@
                             <i class="fas fa-chevron-down select-arrow"></i>
                         </div>
                     </div>
-                    
+
                     <button class="btn-apply-filter">
                         VER RESULTADOS
                     </button>
@@ -528,52 +632,63 @@
             <div class="featured-content" style="flex: 1;">
                 <h3>NOTA:</h3>
                 <p style="opacity: 0.9;">
-                   Último periodo de actualización: tercer trimestre de 2025.
+                    Último periodo de actualización: tercer trimestre de 2025.
                 </p>
             </div>
         </div>
 
         <div style="text-align: center; margin-top: 40px;">
-            <a href="#" class="btn btn-lg" style="background-color: var(--verde-3); color: white; padding: 15px 30px; border-radius: 50px;">
+            <a href="#" class="btn btn-lg"
+                style="background-color: var(--verde-3); color: white; padding: 15px 30px; border-radius: 50px;">
                 <i class="fas fa-download me-2"></i> Descargar Base de Datos (KML/CSV)
             </a>
         </div>
 
     </div>
 
-      <footer class="footer-section bg-secondary text-white py-5" style="background-color: var(--verde-3) !important;">
+    <footer class="footer-section bg-secondary text-white py-5" style="background-color: var(--verde-3) !important;">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-4">
                     <div class="mb-3">
-                        <img src="../models/images/image.png" alt="Gobierno de Puebla" style="filter: brightness(0) invert(1); max-width: 180px;">
+                        <img src="../models/images/image.png" alt="Gobierno de Puebla"
+                            style="filter: brightness(0) invert(1); max-width: 180px;">
                     </div>
                     <div class="lh-1">
-                        <h4 class="h6 fw-bold text-crema" style="color: var(--crema-4);">TRANSPARENCIA PRESUPUESTARIA</h4>
+                        <h4 class="h6 fw-bold text-crema" style="color: var(--crema-4);">TRANSPARENCIA PRESUPUESTARIA
+                        </h4>
                         <p class="small opacity-75">Gobierno del Estado de Puebla</p>
                     </div>
                 </div>
-                
+
                 <div class="col-6 col-lg-2">
                     <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Transparencia</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Portal de Transparencia</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Información Pública</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Protección de Datos</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Avisos de Privacidad</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Portal de
+                                Transparencia</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Información
+                                Pública</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Protección de
+                                Datos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Avisos de
+                                Privacidad</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="col-6 col-lg-2">
                     <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Recursos</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Documentos Oficiales</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Leyes y Reglamentos</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Estadísticas</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">API Documentación</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Documentos
+                                Oficiales</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Leyes y
+                                Reglamentos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">Estadísticas</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none opacity-75">API
+                                Documentación</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="col-lg-4 text-lg-end">
                     <div class="mb-4">
                         <h5 class="h6 fw-bold mb-3" style="color: var(--crema-4);">Contacto</h5>
@@ -594,7 +709,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="border-top border-secondary mt-4 pt-4 text-center small opacity-50">
                 <p class="mb-1">&copy; 2026 Gobierno del Estado de Puebla. Todos los derechos reservados.</p>
                 <p>Portal de Transparencia Presupuestaria | Versión 2.0</p>
@@ -605,7 +720,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../script.js"></script>
-    
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
 
@@ -616,7 +731,7 @@
             const filterBtn = document.getElementById('filterTabBtn');
 
             if (filterContainer && filterBtn) {
-                filterBtn.addEventListener('click', function() {
+                filterBtn.addEventListener('click', function () {
                     if (filterContainer.classList.contains('collapsed')) {
                         filterContainer.classList.remove('collapsed');
                         filterContainer.classList.add('active');
@@ -629,8 +744,8 @@
         }
 
         // Ejecutar inicialización cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function() {
-            
+        document.addEventListener('DOMContentLoaded', function () {
+
             initFilterTab(); // Iniciar Filtro
 
             // Mapa Leaflet
@@ -642,15 +757,15 @@
 
             // Cargar KML
             var runLayer = omnivore.kml('../models/Mapas/LIMITECOMPLE.kml')
-                .on('ready', function() {
+                .on('ready', function () {
                     map.fitBounds(runLayer.getBounds());
-                    runLayer.eachLayer(function(layer) {
+                    runLayer.eachLayer(function (layer) {
                         var contenido = "<b>" + (layer.feature.properties.name || "Obra") + "</b><br>" +
-                                        (layer.feature.properties.description || "Sin descripción");
+                            (layer.feature.properties.description || "Sin descripción");
                         layer.bindPopup(contenido);
                     });
                 })
-                .on('error', function() {
+                .on('error', function () {
                     console.log("No se encontró el archivo KML. Mostrando marcadores de ejemplo.");
                     L.marker([19.0414, -98.2063]).addTo(map).bindPopup("<b>Rehabilitación Calle 5 de Mayo</b><br>Avance: 80%");
                     L.marker([18.46, -97.39]).addTo(map).bindPopup("<b>Hospital General Tehuacán</b><br>Avance: 45%");
@@ -659,4 +774,5 @@
         });
     </script>
 </body>
+
 </html>
