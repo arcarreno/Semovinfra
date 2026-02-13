@@ -164,27 +164,43 @@
             text-shadow: 2px 2px 0px var(--verde-3);
         }
 
-        /* --- RESPONSIVE PARA MÓVIL --- */
+        /* --- RESPONSIVE PAGE HEADER --- */
         @media (max-width: 768px) {
             .page-header {
-                padding: 60px 0 40px;
-                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+                padding: 60px 0 35px;
+                margin-bottom: 25px;
+                background-image: url('../models/images/banner_home.png');
             }
 
             .page-header h1 {
                 font-size: 1.8rem;
                 letter-spacing: 1px;
+                word-break: break-word;
+                padding: 0 15px;
+            }
+
+            .page-header p {
+                font-size: 0.9rem !important;
+                padding: 0 15px;
+                line-height: 1.5;
             }
         }
 
         @media (max-width: 480px) {
             .page-header {
-                padding: 40px 0 30px;
+                padding: 45px 0 25px;
+                margin-bottom: 15px;
+                border-bottom-width: 3px;
             }
 
             .page-header h1 {
-                font-size: 1.5rem;
-                letter-spacing: 0.5px;
+                font-size: 1.3rem;
+                letter-spacing: 0;
+                margin-bottom: 10px;
+            }
+
+            .page-header p {
+                font-size: 0.8rem !important;
             }
         }
 

@@ -120,33 +120,40 @@
         /* --- RESPONSIVE PAGE HEADER --- */
         @media (max-width: 768px) {
             .page-header {
-                padding: 60px 20px 40px;
+                padding: 60px 0 35px;
+                margin-bottom: 25px;
+                background-image: url('../models/images/banner_home.png');
             }
 
             .page-header h1 {
                 font-size: 1.8rem;
                 letter-spacing: 1px;
                 word-break: break-word;
+                padding: 0 15px;
             }
 
             .page-header p {
-                font-size: 1rem !important;
-                padding: 0 10px;
+                font-size: 0.9rem !important;
+                padding: 0 15px;
+                line-height: 1.5;
             }
         }
 
         @media (max-width: 480px) {
             .page-header {
-                padding: 45px 15px 30px;
+                padding: 45px 0 25px;
+                margin-bottom: 15px;
+                border-bottom-width: 3px;
             }
 
             .page-header h1 {
-                font-size: 1.4rem;
-                letter-spacing: 0.5px;
+                font-size: 1.3rem;
+                letter-spacing: 0;
+                margin-bottom: 10px;
             }
 
             .page-header p {
-                font-size: 0.85rem !important;
+                font-size: 0.8rem !important;
             }
         }
 
@@ -159,18 +166,34 @@
 
         .process-card {
             background: var(--blanco);
-            border: 1px solid var(--dorado-8);
+            border: 2px solid var(--dorado-8);
             border-radius: 12px;
             padding: 30px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
         }
 
         .process-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(125, 36, 71, 0.1);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(125, 36, 71, 0.25);
             border-color: var(--guinda-1);
+            background: var(--guinda-1);
+        }
+
+        .process-card:hover .process-title {
+            color: var(--dorado-8);
+            font-size: 1.7rem;
+        }
+
+        .process-card:hover .process-content p {
+            color: var(--blanco);
+            font-size: 1.05rem;
+        }
+
+        .process-card:hover .step-number {
+            color: rgba(255, 255, 255, 0.15);
         }
 
         .step-number {
@@ -188,11 +211,16 @@
             z-index: 1;
         }
 
+        .process-content p {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
         .process-title {
             color: var(--guinda-1);
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 15px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         /* Marco Legal */
@@ -209,11 +237,16 @@
             padding: 20px;
             border-radius: 8px;
             text-align: center;
-            transition: background 0.3s;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border: 2px solid transparent;
         }
 
         .legal-card:hover {
             background: var(--guinda-1);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(125, 36, 71, 0.3);
+            border-color: var(--dorado-8);
         }
 
         .article-num {
@@ -222,12 +255,23 @@
             display: block;
             margin-bottom: 5px;
             color: var(--crema-4);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .legal-card:hover .article-num {
+            font-size: 3rem;
+            color: var(--dorado-8);
         }
 
         .legal-desc {
             font-size: 0.8rem;
             text-transform: uppercase;
             line-height: 1.4;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .legal-card:hover .legal-desc {
+            font-size: 0.9rem;
         }
 
         .custom-table {
@@ -307,6 +351,26 @@
             color: var(--gris-2);
             font-size: 1.1rem;
             margin-bottom: 40px;
+        }
+
+        .featured-box {
+            text-align: center;
+            justify-content: center;
+            background-color: var(--verde-3);
+            color: var(--blanco);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            /* Móvil: columna */
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 60px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 3px solid var(--dorado-8);
+            box-shadow: 0 10px 30px rgba(125, 36, 71, 0.2);
+            max-width: 1200px;
         }
     </style>
 </head>
@@ -427,13 +491,22 @@
         </div>
     </header>
 
-    <div class="container" style="margin-bottom: 80px;">
+    <div class="featured-box mt-5">
+        <div class="featured-icon">
+        </div>
+        <div class="featured-content" style="flex: 1;">
+            <h3>¿Qué es el SED?</h3>
+            <p style="opacity: 0.9;">
+                El Sistema de Evaluación del Desempeño (SED) es el conjunto de elementos metodológicos utilizados para
+                establecer los objetivos de los Programas y Políticas Públicas, medir sus avances, evaluar desde su
+                diseño hasta sus resultados y mejorar su implementación. Está organizado en dos fases: el seguimiento y
+                la
+                evaluación, que se explican a continuación.
+            </p>
+        </div>
+    </div>
 
-        <h2 class="section-title">¿Qué es el SED?</h2>
-        <p class="section-subtitle">El Sistema de Evaluación del Desempeño (SED) es el conjunto de elementos
-            metodológicos utilizados para establecer los objetivos de los Programas y Políticas Públicas, medir sus
-            avances, evaluar desde su diseño hasta sus resultados y mejorar su implementación. Está organizado en dos
-            fases: el seguimiento y la evaluación, que se explican a continuación.</p>
+    <div class="container" style="margin-bottom: 80px;">
 
         <div class="process-grid">
             <div class="process-card">
