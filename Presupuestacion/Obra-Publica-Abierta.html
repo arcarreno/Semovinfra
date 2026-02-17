@@ -20,23 +20,22 @@
     <style>
         @media (max-width: 1199.98px) {
 
-            /*  Fondo guinda sólido para el panel desplegable completo */
+
             .navbar-collapse {
                 background-color: var(--guinda-1);
                 padding: 15px;
                 margin-top: 10px;
                 border-radius: 8px;
                 box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-                /* Sombra para que resalte */
+
             }
 
-            /*  Letras blancas para los enlaces principales */
             .navbar-collapse .nav-link {
                 color: #ffffff !important;
                 border-radius: 5px;
             }
 
-            /* Fondo guinda también para los submenús (Ingreso, Gasto) y quitar su borde superior */
+            /* Fondo guinda también para los submenús  */
             .navbar-collapse .dropdown-menu {
                 background-color: transparent;
                 border: none;
@@ -61,6 +60,9 @@
         }
 
         .featured-box {
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
             background-color: var(--verde-3);
             color: var(--blanco);
             border-radius: 20px;
@@ -161,6 +163,19 @@
             }
         }
 
+        .nav-pills .nav-link {
+            color: var(--gris-2);
+            background-color: var(--crema-4);
+            margin: 0 5px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--guinda-1);
+            color: white;
+        }
+
         /* --- MAPA --- */
         .map-container {
             height: 600px;
@@ -173,12 +188,14 @@
             z-index: 1;
         }
 
-        #map {
+        #map2024,
+        #map2025,
+        #map2026 {
             height: 100%;
             width: 100%;
         }
 
-        /* --- FILTRO FLOTANTE PREMIUM (ESTILOS INTEGRADOS) --- */
+        /* --- FILTRO FLOTANTE --- */
         .floating-filters {
             position: fixed;
             top: 200px;
@@ -200,7 +217,7 @@
             background: linear-gradient(135deg, var(--guinda-1) 0%, #5a122e 100%);
             padding: 30px 25px;
             border-radius: 30px 0 0 30px;
-            /* Redondeado solo izquierda */
+
             box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.3);
             border-left: 5px solid var(--dorado-8);
             color: white;
@@ -300,6 +317,8 @@
 
         /* --- ESTADÍSTICAS --- */
         .stat-card {
+            justify-content: center;
+            text-align: center;
             background: var(--blanco);
             padding: 20px;
             border-radius: 8px;
@@ -307,7 +326,7 @@
             border-bottom: 4px solid var(--verde-3);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             height: 100%;
-            /* Para que tengan la misma altura */
+
         }
 
         .stat-number {
@@ -546,109 +565,246 @@
         </div>
     </div>
 
+
     <div class="container" style="margin-bottom: 80px;">
 
-        <div class="row g-3 mb-5">
-            <div class="col-6 col-md-3">
+        <div class="row g-3 mb-5 justify-content-center">
+            <div class="col-md-3">
                 <div class="stat-card">
-                    <span class="stat-number">1,245</span>
+                    <span class="stat-number" id="statObras"><i class="fas fa-spinner fa-spin"></i></span>
                     <span class="stat-label">Obras Activas</span>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-md-3">
                 <div class="stat-card">
-                    <span class="stat-number">$8.5MM</span>
+                    <span class="stat-number" id="statInversion"><i class="fas fa-spinner fa-spin"></i></span>
                     <span class="stat-label">Inversión Total</span>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-card">
-                    <span class="stat-number">217</span>
-                    <span class="stat-label">Municipios</span>
+            <div class="col-md-3" style="position: relative;">
+                <div class="stat-card" id="statJuntasCard"
+                    style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;"
+                    onclick="toggleJuntaDropdown()">
+                    <span class="stat-number" id="statJuntas"><i class="fas fa-spinner fa-spin"></i></span>
+                    <span class="stat-label">Juntas Auxiliares <i class="fas fa-chevron-down"
+                            style="font-size: 0.7rem;"></i></span>
+                    <span class="stat-label" id="statJuntaSelected"
+                        style="color: var(--guinda-1); font-weight: 600; display: none;"></span>
                 </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-card">
-                    <span class="stat-number">95%</span>
-                    <span class="stat-label">Avance Financiero</span>
+                <!-- Dropdown de Juntas Auxiliares -->
+                <div id="juntaDropdown"
+                    style="display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); z-index:1000; width:280px; max-height:400px; overflow-y:auto; background:#fff; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.15); margin-top:8px; padding:8px 0;">
+                    <div id="juntaDropdownList"></div>
                 </div>
             </div>
         </div>
+
+        <!-- ====== SECCIÓN DE GRÁFICOS INTERACTIVOS ====== -->
+        <h2 class="section-title">Análisis de Obra Pública</h2>
+        <p class="section-subtitle">Visualización interactiva de inversiones, rubros y avance de obras públicas.</p>
+
+        <!-- Filtro por año -->
+        <div class="d-flex justify-content-center mb-4">
+            <div class="btn-group" role="group" aria-label="Filtrar por año">
+                <button type="button" class="btn btn-outline-secondary active" id="btnTodos"
+                    onclick="filterCharts('todos')"
+                    style="border-color: var(--guinda-1); color: var(--guinda-1);">Todos</button>
+                <button type="button" class="btn btn-outline-secondary" id="btn2024" onclick="filterCharts('2024')"
+                    style="border-color: var(--guinda-1); color: var(--guinda-1);">2024</button>
+                <button type="button" class="btn btn-outline-secondary" id="btn2025" onclick="filterCharts('2025')"
+                    style="border-color: var(--guinda-1); color: var(--guinda-1);">2025</button>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Gráfico 1: Inversión por Rubro -->
+            <div class="col-lg-7">
+                <div class="stat-card" style="height: auto; padding: 25px;">
+                    <h5 style="color: var(--guinda-1); font-weight: 700; margin-bottom: 20px;">
+                        <i class="fas fa-chart-bar me-2"></i>Inversión Total por Rubro
+                    </h5>
+                    <div style="position: relative; height: 350px;">
+                        <canvas id="chartRubro"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Gráfico 2: Distribución por Junta Auxiliar -->
+            <div class="col-lg-5">
+                <div class="stat-card" style="height: auto; padding: 25px;">
+                    <h5 style="color: var(--guinda-1); font-weight: 700; margin-bottom: 20px;">
+                        <i class="fas fa-chart-pie me-2"></i>Distribución por Junta Auxiliar
+                    </h5>
+                    <div style="position: relative; height: 350px;">
+                        <canvas id="chartJunta"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Gráfico 3: Avance Físico por Rubro -->
+            <div class="col-12">
+                <div class="stat-card" style="height: auto; padding: 25px;">
+                    <h5 style="color: var(--guinda-1); font-weight: 700; margin-bottom: 20px;">
+                        <i class="fas fa-tasks me-2"></i>Avance Físico Promedio por Rubro
+                    </h5>
+                    <div style="position: relative; height: 350px;">
+                        <canvas id="chartAvance"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FIN SECCIÓN GRÁFICOS -->
 
         <h2 class="section-title">Mapa de Obras</h2>
-        <p class="section-subtitle">Explora las obras públicas realizadas en el año 2026.</p>
 
-        <div class="map-container">
-            <div id="map"></div>
 
-            <div id="floatingFilters" class="floating-filters collapsed">
+        <ul class="nav nav-pills justify-content-center mb-3" id="obrasTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="obra2024-tab" data-bs-toggle="pill" data-bs-target="#obra2024"
+                    type="button" role="tab" aria-controls="obra2024" aria-selected="true">Obra Pública del año
+                    2024</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="obra2025-tab" data-bs-toggle="pill" data-bs-target="#obra2025"
+                    type="button" role="tab" aria-controls="obra2025" aria-selected="false">Obra Pública del año
+                    2025</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="obra2026-tab" data-bs-toggle="pill" data-bs-target="#obra2026"
+                    type="button" role="tab" aria-controls="obra2026" aria-selected="false">Obra Pública del año
+                    2026</button>
+            </li>
+        </ul>
 
-                <button id="filterTabBtn" class="filter-tab" title="Abrir Filtros">
-                    <i class="fas fa-filter"></i>
-                </button>
+        <!-- ====== CONTENIDO POR PESTAÑA ====== -->
+        <div class="tab-content" id="obrasTabContent">
 
-                <div class="filter-content">
-                    <div class="filter-header mb-4">
-                        <h4 class="m-0"><i class="fas fa-search-location me-2"></i>Buscador</h4>
-                        <p class="small text-white-50 m-0">Selecciona criterios</p>
-                    </div>
+            <!-- ====== TAB 2024 ====== -->
+            <div class="tab-pane fade show active" id="obra2024" role="tabpanel" aria-labelledby="obra2024-tab">
+                <div class="map-container">
+                    <div id="map2024"></div>
 
-                    <div class="filter-block mb-3">
-                        <label class="filter-label"><i class="fas fa-map-marker-alt"></i> Municipio</label>
-                        <div class="input-wrapper">
-                            <select class="custom-select w-100">
-                                <option selected>Todos los municipios</option>
-                                <option>Puebla</option>
-                                <option>Tehuacán</option>
-                                <option>Atlixco</option>
-                            </select>
-                            <i class="fas fa-chevron-down select-arrow"></i>
+                    <div id="floatingFilters" class="floating-filters collapsed">
+                        <button id="filterTabBtn" class="filter-tab" title="Abrir Filtros">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                        <div class="filter-content">
+                            <div class="filter-header mb-4">
+                                <h4 class="m-0"><i class="fas fa-search-location me-2"></i>Buscador</h4>
+                                <p class="small text-white-50 m-0">Selecciona criterios</p>
+                            </div>
+                            <div class="filter-block mb-3">
+                                <label class="filter-label"><i class="fas fa-map-marker-alt"></i> Junta Auxiliar</label>
+                                <div class="input-wrapper">
+                                    <select class="custom-select w-100" id="filterJunta">
+                                        <option selected>Todas las juntas auxiliares</option>
+                                        <option>San Baltazar Campeche</option>
+                                        <option>San Baltazar Tetela</option>
+                                        <option>Santa María Guadalupe Tecola</option>
+                                        <option>San Felipe Hueyotlipan</option>
+                                        <option>San Francisco Totimehuacán</option>
+                                        <option>Santo Tomás Chautla</option>
+                                        <option>Ignacio Zaragoza</option>
+                                        <option>Ignacio Romero Vargas</option>
+                                        <option>La Libertad</option>
+                                        <option>San Jerónimo Caleras</option>
+                                        <option>San Pablo Xochimehuacan</option>
+                                        <option>San Sebastián de Aparicio</option>
+                                        <option>La Resurrección</option>
+                                        <option>Santa María Xonacatepec</option>
+                                        <option>San Miguel Canoa</option>
+                                        <option>San Pedro Zacachimalpa</option>
+                                        <option>San Andrés Azumiatla</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down select-arrow"></i>
+                                </div>
+                            </div>
+                            <div class="filter-block mb-3">
+                                <label class="filter-label"><i class="fas fa-hard-hat"></i> Sector</label>
+                                <div class="input-wrapper">
+                                    <select class="custom-select w-100" id="filterSector">
+                                        <option selected>Todos los sectores</option>
+                                        <option>Pavimentacion</option>
+                                        <option>Rehabilitaxciones viales</option>
+                                        <option>Obras Hidrosanitarias</option>
+                                        <option>Mercados</option>
+                                        <option>Infra Educativa</option>
+                                        <option>Bacheo</option>
+                                        <option>Infra Ciclista</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down select-arrow"></i>
+                                </div>
+                            </div>
+                            <div class="filter-block mb-4">
+                                <label class="filter-label"><i class="fas fa-tasks"></i> Estatus</label>
+                                <div class="input-wrapper">
+                                    <select class="custom-select w-100" id="filterEstatus">
+                                        <option selected>Cualquier estatus</option>
+                                        <option>En Ejecución</option>
+                                        <option>Concluidas</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down select-arrow"></i>
+                                </div>
+                            </div>
+                            <button class="btn-apply-filter" onclick="applyMapFilter()">VER RESULTADOS</button>
                         </div>
                     </div>
+                </div>
 
-                    <div class="filter-block mb-3">
-                        <label class="filter-label"><i class="fas fa-hard-hat"></i> Sector</label>
-                        <div class="input-wrapper">
-                            <select class="custom-select w-100">
-                                <option selected>Todos los sectores</option>
-                                <option>Educación</option>
-                                <option>Salud</option>
-                                <option>Carreteras</option>
-                            </select>
-                            <i class="fas fa-chevron-down select-arrow"></i>
-                        </div>
+                <div class="featured-box mt-5" style="justify-content: center; align-items: center;">
+                    <div class="featured-icon">
+                        <i class="fas fa-info-circle"></i>
                     </div>
-
-                    <div class="filter-block mb-4">
-                        <label class="filter-label"><i class="fas fa-tasks"></i> Estatus</label>
-                        <div class="input-wrapper">
-                            <select class="custom-select w-100">
-                                <option selected>Cualquier estatus</option>
-                                <option>En Ejecución</option>
-                                <option>Concluidas</option>
-                            </select>
-                            <i class="fas fa-chevron-down select-arrow"></i>
-                        </div>
+                    <div class="featured-content" style="flex: 1;">
+                        <h3>NOTA:</h3>
+                        <p style="opacity: 0.9;">
+                            Reporte de obras públicas comprendidas en el periodo del inicio de administración del 15 de
+                            octubre del 2024 al 31 de diciembre del 2024.
+                        </p>
                     </div>
-
-                    <button class="btn-apply-filter">
-                        VER RESULTADOS
-                    </button>
                 </div>
             </div>
-        </div>
 
-        <div class="featured-box mt-5">
-            <div class="featured-icon">
-                <i class="fas fa-info-circle"></i>
+            <!-- ====== TAB 2025 ====== -->
+            <div class="tab-pane fade" id="obra2025" role="tabpanel" aria-labelledby="obra2025-tab">
+                <div class="map-container">
+                    <div id="map2025"></div>
+                </div>
+
+                <div class="featured-box mt-5" style="justify-content: center; align-items: center;">
+                    <div class="featured-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="featured-content" style="flex: 1;">
+                        <h3>NOTA:</h3>
+                        <p style="opacity: 0.9;">
+                            Reporte de obras públicas comprendidas en el periodo del 1 de enero del 2025 al 31 de
+                            diciembre del 2025.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="featured-content" style="flex: 1;">
-                <h3>NOTA:</h3>
-                <p style="opacity: 0.9;">
-                    Último periodo de actualización: tercer trimestre de 2025.
-                </p>
+
+            <!-- ====== TAB 2026 ====== -->
+            <div class="tab-pane fade" id="obra2026" role="tabpanel" aria-labelledby="obra2026-tab">
+                <div class="map-container">
+                    <div id="map2026"></div>
+                </div>
+
+                <div class="featured-box mt-5" style="justify-content: center; align-items: center;">
+                    <div class="featured-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="featured-content" style="flex: 1;">
+                        <h3>NOTA:</h3>
+                        <p style="opacity: 0.9;">
+                            Reporte de obras públicas comprendidas en el periodo del 1 de enero del 2026 al 31 de
+                            diciembre del 2026.
+                        </p>
+                    </div>
+                </div>
             </div>
+
         </div>
+        <!-- FIN tab-content -->
 
         <div style="text-align: center; margin-top: 40px;">
             <a href="#" class="btn btn-lg"
@@ -733,9 +889,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+    <script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
 
     <script>
         // Función para inicializar la pestaña de filtros
@@ -756,34 +915,471 @@
             }
         }
 
-        // Ejecutar inicialización cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function () {
 
-            initFilterTab(); // Iniciar Filtro
+        var mapConfigs = {
+            'map2024': {
+                kmz: '../models/Mapas/Mapa2024.kmz'
+            },
+            'map2025': {
+                kmz: '../models/Mapas/Mapa2025.kmz'
+            },
+            'map2026': {
+                kmz: '../models/Mapas/Mapa2026.kmz'
+            }
+        };
 
-            // Mapa Leaflet
-            var map = L.map('map').setView([19.0414, -98.2063], 9);
+        var maps = {};
+        var kmzLayers = {};
+        var kmzFeatures = {};
+
+        function initMap(mapId) {
+            if (maps[mapId]) return;
+
+            var map = L.map(mapId).setView([19.0414, -98.2063], 9);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
 
-            // Cargar KML
-            var runLayer = omnivore.kml('../models/Mapas/LIMITECOMPLE.kml')
-                .on('ready', function () {
-                    map.fitBounds(runLayer.getBounds());
-                    runLayer.eachLayer(function (layer) {
-                        var contenido = "<b>" + (layer.feature.properties.name || "Obra") + "</b><br>" +
-                            (layer.feature.properties.description || "Sin descripción");
-                        layer.bindPopup(contenido);
+            var config = mapConfigs[mapId];
+            if (config && config.kmz) {
+                var kmzLayer = L.kmzLayer().addTo(map);
+                kmzLayers[mapId] = kmzLayer;
+                kmzFeatures[mapId] = [];
+                kmzLayer.on('load', function (e) {
+                    map.fitBounds(e.layer.getBounds());
+                    // Store individual features for filtering
+                    e.layer.eachLayer(function (layer) {
+                        kmzFeatures[mapId].push(layer);
                     });
+                });
+                kmzLayer.load(config.kmz);
+            }
+
+            maps[mapId] = map;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            initFilterTab(); // Iniciar Filtro
+
+            initMap('map2024');
+
+            // Cuando se cambia de pestaña, inicializar el mapa correspondiente
+            var tabList = document.querySelectorAll('#obrasTab button[data-bs-toggle="pill"]');
+            tabList.forEach(function (tab) {
+                tab.addEventListener('shown.bs.tab', function (event) {
+                    var targetPane = event.target.getAttribute('data-bs-target');
+                    var mapId = targetPane.replace('#obra', 'map');
+
+                    initMap(mapId);
+
+                    setTimeout(function () {
+                        if (maps[mapId]) {
+                            maps[mapId].invalidateSize();
+                        }
+                    }, 200);
+                });
+            });
+        });
+    </script>
+
+    <!-- ====== SCRIPT DINÁMICO - XLSX + GRÁFICOS + FILTROS ====== -->
+    <script>
+        // ============ VARIABLES GLOBALES ============
+        var obraData = [];
+        var currentYearFilter = 'todos';
+        var currentJuntaFilter = null;
+        var chartRubro, chartJunta, chartAvance;
+
+        var chartColors = [
+            '#7D2447', '#A63156', '#D4A574', '#C8956A', '#5A1A33',
+            '#B8860B', '#8B6914', '#CD853F', '#DAA520', '#BC8F8F',
+            '#9E3A5A', '#6B1D3A', '#E8C99B', '#C49A6C', '#7B3F00',
+            '#D2691E', '#8B4513', '#A0522D'
+        ];
+
+        // ============ FORMATEO ============
+        function formatMoney(n) {
+            if (n >= 1e6) return '$' + (n / 1e6).toFixed(1) + 'M';
+            if (n >= 1e3) return '$' + (n / 1e3).toFixed(0) + 'K';
+            return '$' + n.toFixed(0);
+        }
+
+        function formatMoneyFull(n) {
+            return '$' + n.toLocaleString('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
+
+        // ============ LECTURA XLSX CON SHEETJS ============
+        function loadXLSXData() {
+            fetch('../Data/REPORTE DE OBRAS y SERVICIOS 311225.xlsx')
+                .then(function (response) { return response.arrayBuffer(); })
+                .then(function (data) {
+                    var workbook = XLSX.read(data, { type: 'array' });
+                    var ws = workbook.Sheets['OBRA PUBLICA'];
+                    if (!ws) {
+                        console.error('Hoja OBRA PUBLICA no encontrada');
+                        return;
+                    }
+
+                    var range = XLSX.utils.decode_range(ws['!ref']);
+                    obraData = [];
+
+                    // Headers en fila 6 (index 5), datos desde fila 7 (index 6)
+                    for (var r = 6; r <= range.e.r; r++) {
+                        var year = getCellValue(ws, r, 1);       // Col B = AÑO
+                        var rubro = getCellValue(ws, r, 2);       // Col C = RUBRO
+                        var monto_total = getCellNum(ws, r, 13);  // Col N = MONTO TOTAL
+                        var avance_fisico = getCellNum(ws, r, 20);// Col U = AVANCE FÍSICO
+                        var junta = getCellValue(ws, r, 21);      // Col V = JUNTAS AUXILIARES
+
+                        if (year && rubro) {
+                            obraData.push({
+                                year: String(year),
+                                rubro: String(rubro).trim().toUpperCase(),
+                                monto_total: monto_total || 0,
+                                avance_fisico: avance_fisico || 0,
+                                junta: junta ? String(junta).trim().toUpperCase() : 'SIN ASIGNAR'
+                            });
+                        }
+                    }
+
+                    console.log('XLSX cargado: ' + obraData.length + ' registros');
+                    initializeUI();
                 })
-                .on('error', function () {
-                    console.log("No se encontró el archivo KML. Mostrando marcadores de ejemplo.");
-                    L.marker([19.0414, -98.2063]).addTo(map).bindPopup("<b>Rehabilitación Calle 5 de Mayo</b><br>Avance: 80%");
-                    L.marker([18.46, -97.39]).addTo(map).bindPopup("<b>Hospital General Tehuacán</b><br>Avance: 45%");
-                })
-                .addTo(map);
+                .catch(function (err) {
+                    console.error('Error cargando XLSX:', err);
+                    document.getElementById('statObras').textContent = 'Error';
+                    document.getElementById('statInversion').textContent = 'Error';
+                    document.getElementById('statJuntas').textContent = 'Error';
+                });
+        }
+
+        function getCellValue(ws, row, col) {
+            var cell = ws[XLSX.utils.encode_cell({ r: row, c: col })];
+            return cell ? cell.v : null;
+        }
+
+        function getCellNum(ws, row, col) {
+            var cell = ws[XLSX.utils.encode_cell({ r: row, c: col })];
+            if (!cell) return 0;
+            var val = cell.v;
+            return (typeof val === 'number') ? val : parseFloat(val) || 0;
+        }
+
+        // ============ INICIALIZAR UI ============
+        function initializeUI() {
+            populateJuntaDropdown();
+            applyFilters();
+        }
+
+        // ============ STAT CARDS ============
+        function updateStatCards(filteredData) {
+            var totalObras = filteredData.length;
+            var totalInversion = 0;
+            var juntasSet = {};
+
+            filteredData.forEach(function (d) {
+                totalInversion += d.monto_total;
+                juntasSet[d.junta] = true;
+            });
+
+            var totalJuntas = Object.keys(juntasSet).length;
+
+            document.getElementById('statObras').textContent = totalObras.toLocaleString('es-MX');
+            document.getElementById('statInversion').textContent = formatMoneyFull(totalInversion);
+            document.getElementById('statJuntas').textContent = totalJuntas;
+        }
+
+        // ============ DROPDOWN DE JUNTAS ============
+        var juntaDropdownOpen = false;
+
+        function populateJuntaDropdown() {
+            var juntasSet = {};
+            obraData.forEach(function (d) { juntasSet[d.junta] = true; });
+            var juntas = Object.keys(juntasSet).sort();
+
+            var list = document.getElementById('juntaDropdownList');
+            list.innerHTML = '';
+
+            // Opción "Todas"
+            list.appendChild(createDropdownItem('✦ Todas las Juntas', null));
+
+            juntas.forEach(function (j) {
+                list.appendChild(createDropdownItem(j, j));
+            });
+        }
+
+        function createDropdownItem(label, value) {
+            var div = document.createElement('div');
+            div.style.cssText = 'padding:10px 20px;cursor:pointer;font-size:0.85rem;color:#333;transition:background 0.2s;border-bottom:1px solid #f0f0f0;';
+            div.textContent = label;
+            div.onmouseover = function () { this.style.background = '#f8f0f4'; };
+            div.onmouseout = function () { this.style.background = ''; };
+            div.onclick = function (e) {
+                e.stopPropagation();
+                selectJunta(value, label);
+            };
+            return div;
+        }
+
+        function toggleJuntaDropdown() {
+            juntaDropdownOpen = !juntaDropdownOpen;
+            document.getElementById('juntaDropdown').style.display = juntaDropdownOpen ? 'block' : 'none';
+
+            var card = document.getElementById('statJuntasCard');
+            if (juntaDropdownOpen) {
+                card.style.transform = 'scale(1.03)';
+                card.style.boxShadow = '0 6px 20px rgba(125,36,71,0.2)';
+            } else {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            }
+        }
+
+        function selectJunta(juntaValue, label) {
+            currentJuntaFilter = juntaValue;
+            juntaDropdownOpen = false;
+            document.getElementById('juntaDropdown').style.display = 'none';
+            document.getElementById('statJuntasCard').style.transform = '';
+            document.getElementById('statJuntasCard').style.boxShadow = '';
+
+            var selectedLabel = document.getElementById('statJuntaSelected');
+            if (juntaValue) {
+                selectedLabel.textContent = '▸ ' + label;
+                selectedLabel.style.display = 'block';
+            } else {
+                selectedLabel.style.display = 'none';
+            }
+
+            applyFilters();
+        }
+
+        // Cerrar dropdown al hacer clic fuera
+        document.addEventListener('click', function (e) {
+            var dd = document.getElementById('juntaDropdown');
+            var card = document.getElementById('statJuntasCard');
+            if (dd && card && !dd.contains(e.target) && !card.contains(e.target)) {
+                juntaDropdownOpen = false;
+                dd.style.display = 'none';
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            }
+        });
+
+        // ============ FILTROS COMBINADOS ============
+        function applyFilters() {
+            var filtered = obraData;
+
+            if (currentYearFilter !== 'todos') {
+                filtered = filtered.filter(function (d) { return d.year === currentYearFilter; });
+            }
+            if (currentJuntaFilter) {
+                filtered = filtered.filter(function (d) { return d.junta === currentJuntaFilter; });
+            }
+
+            updateStatCards(filtered);
+            buildCharts(filtered);
+        }
+
+        function filterCharts(year) {
+            currentYearFilter = year;
+
+            document.querySelectorAll('.btn-group .btn').forEach(function (b) {
+                b.classList.remove('active');
+                b.style.backgroundColor = '';
+                b.style.color = 'var(--guinda-1)';
+            });
+            var activeBtn = document.getElementById('btn' + (year === 'todos' ? 'Todos' : year));
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.style.backgroundColor = 'var(--guinda-1)';
+                activeBtn.style.color = '#fff';
+            }
+
+            applyFilters();
+        }
+
+        // ============ GRÁFICOS ============
+        function buildCharts(filteredData) {
+            var rubros = {};
+            filteredData.forEach(function (d) {
+                if (!rubros[d.rubro]) rubros[d.rubro] = { total: 0, avance_sum: 0, count: 0 };
+                rubros[d.rubro].total += d.monto_total;
+                rubros[d.rubro].avance_sum += d.avance_fisico;
+                rubros[d.rubro].count++;
+            });
+
+            var juntas = {};
+            filteredData.forEach(function (d) {
+                if (!juntas[d.junta]) juntas[d.junta] = 0;
+                juntas[d.junta] += d.monto_total;
+            });
+
+            var rubroKeys = Object.keys(rubros).sort(function (a, b) { return rubros[b].total - rubros[a].total; });
+            var rubroTotals = rubroKeys.map(function (k) { return rubros[k].total; });
+
+            var juntaKeys = Object.keys(juntas).sort(function (a, b) { return juntas[b] - juntas[a]; });
+            var juntaTotals = juntaKeys.map(function (k) { return juntas[k]; });
+
+            var avanceValues = rubroKeys.map(function (k) {
+                return (rubros[k].avance_sum / rubros[k].count * 100).toFixed(1);
+            });
+
+            if (chartRubro) chartRubro.destroy();
+            if (chartJunta) chartJunta.destroy();
+            if (chartAvance) chartAvance.destroy();
+
+            // Inversión por Rubro
+            chartRubro = new Chart(document.getElementById('chartRubro'), {
+                type: 'bar',
+                data: {
+                    labels: rubroKeys,
+                    datasets: [{
+                        label: 'Monto Total ($)',
+                        data: rubroTotals,
+                        backgroundColor: chartColors.slice(0, rubroKeys.length),
+                        borderColor: chartColors.slice(0, rubroKeys.length),
+                        borderWidth: 1,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: function (ctx) { return formatMoney(ctx.raw); } } }
+                    },
+                    scales: {
+                        y: { ticks: { callback: function (val) { return formatMoney(val); }, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.05)' } },
+                        x: { ticks: { font: { size: 10 }, maxRotation: 45 }, grid: { display: false } }
+                    }
+                }
+            });
+
+            // Distribución por Junta
+            chartJunta = new Chart(document.getElementById('chartJunta'), {
+                type: 'doughnut',
+                data: {
+                    labels: juntaKeys,
+                    datasets: [{
+                        data: juntaTotals,
+                        backgroundColor: chartColors.slice(0, juntaKeys.length),
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 12, usePointStyle: true } },
+                        tooltip: {
+                            callbacks: {
+                                label: function (ctx) {
+                                    var pct = ((ctx.raw / juntaTotals.reduce(function (a, b) { return a + b }, 0)) * 100).toFixed(1);
+                                    return ctx.label + ': ' + formatMoney(ctx.raw) + ' (' + pct + '%)';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Avance Físico Promedio
+            chartAvance = new Chart(document.getElementById('chartAvance'), {
+                type: 'bar',
+                data: {
+                    labels: rubroKeys,
+                    datasets: [{
+                        label: 'Avance Físico (%)',
+                        data: avanceValues,
+                        backgroundColor: avanceValues.map(function (v) {
+                            if (v >= 80) return '#2E7D32';
+                            if (v >= 50) return '#F9A825';
+                            return '#C62828';
+                        }),
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: function (ctx) { return ctx.raw + '%'; } } }
+                    },
+                    scales: {
+                        x: { max: 100, ticks: { callback: function (v) { return v + '%'; } }, grid: { color: 'rgba(0,0,0,0.05)' } },
+                        y: { ticks: { font: { size: 11 } }, grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // ============ FILTRO DEL MAPA (KMZ) ============
+        function getActiveMapId() {
+            var activeTab = document.querySelector('#obrasTabContent .tab-pane.active');
+            if (activeTab) return activeTab.id.replace('obra', 'map');
+            return 'map2024';
+        }
+
+        function applyMapFilter() {
+            var mapId = getActiveMapId();
+            var features = kmzFeatures[mapId];
+            if (!features || features.length === 0) {
+                alert('No hay datos de mapa cargados. Espera a que se cargue el KMZ.');
+                return;
+            }
+
+            var juntaFilter = document.getElementById('filterJunta').value;
+            var sectorFilter = document.getElementById('filterSector').value;
+            var statusFilter = document.getElementById('filterEstatus').value;
+
+            var map = maps[mapId];
+            var shown = 0, hidden = 0;
+
+            features.forEach(function (layer) {
+                var popup = '';
+                if (layer.getPopup) { var p = layer.getPopup(); if (p) popup = p.getContent() || ''; }
+                if (layer._popup) popup = layer._popup._content || popup;
+
+                var name = layer.feature ? (layer.feature.properties ? layer.feature.properties.name || '' : '') : '';
+                var searchText = (popup + ' ' + name).toUpperCase();
+
+                var show = true;
+
+                if (juntaFilter && juntaFilter !== 'Todas las juntas auxiliares') {
+                    if (searchText.indexOf(juntaFilter.toUpperCase()) === -1) show = false;
+                }
+                if (sectorFilter && sectorFilter !== 'Todos los sectores') {
+                    if (searchText.indexOf(sectorFilter.toUpperCase()) === -1) show = false;
+                }
+                if (statusFilter && statusFilter !== 'Cualquier estatus') {
+                    if (statusFilter === 'Concluidas') {
+                        if (searchText.indexOf('100%') === -1 && searchText.indexOf('CONCLU') === -1) show = false;
+                    } else if (statusFilter === 'En Ejecución') {
+                        if (searchText.indexOf('100%') !== -1 || searchText.indexOf('CONCLU') !== -1) show = false;
+                    }
+                }
+
+                if (show) {
+                    if (!map.hasLayer(layer)) map.addLayer(layer);
+                    shown++;
+                } else {
+                    if (map.hasLayer(layer)) map.removeLayer(layer);
+                    hidden++;
+                }
+            });
+
+            console.log('Filtro mapa: ' + shown + ' visibles, ' + hidden + ' ocultos');
+        }
+
+        // ============ INICIALIZACIÓN ============
+        document.addEventListener('DOMContentLoaded', function () {
+            loadXLSXData();
         });
     </script>
 </body>
