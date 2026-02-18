@@ -1831,3 +1831,57 @@ body.dark-mode .border {
         font-size: 15px;
     }
 }
+
+/* --- DARK MODE: Botones de filtro año (Todos, 2024, 2025) --- */
+body.dark-mode .btn-group .btn-outline-secondary {
+    color: #d4a0b5 !important;
+    border-color: #d4a0b5 !important;
+    background: transparent;
+}
+
+body.dark-mode .btn-group .btn-outline-secondary:hover {
+    background: rgba(125, 36, 71, 0.3) !important;
+    color: #f0d0e0 !important;
+    border-color: #d4a0b5 !important;
+}
+
+body.dark-mode .btn-group .btn-outline-secondary.active {
+    background: var(--guinda-1) !important;
+    color: #fff !important;
+    border-color: var(--guinda-1) !important;
+}
+
+/* --- DARK MODE: Pestañas de mapa (Obra Pública 2024/2025/2026) --- */
+body.dark-mode #obrasTab .nav-link {
+    color: #d4a0b5;
+    background: transparent;
+    border: 1px solid rgba(212, 160, 181, 0.3);
+    border-radius: 8px;
+    margin: 0 4px;
+}
+
+body.dark-mode #obrasTab .nav-link:hover {
+    background: rgba(125, 36, 71, 0.3);
+    color: #f0d0e0;
+    border-color: #d4a0b5;
+}
+
+body.dark-mode #obrasTab .nav-link.active {
+    background: var(--guinda-1) !important;
+    color: #fff !important;
+    border-color: var(--guinda-1) !important;
+}
+
+/* --- DARK MODE: Stat cards --- */
+body.dark-mode .stat-card {
+    background: #222222;
+    border-color: rgba(125, 36, 71, 0.3);
+}
+
+body.dark-mode .stat-number {
+    color: #d4a0b5;
+}
+
+body.dark-mode .stat-label {
+    color: #ccc;
+}

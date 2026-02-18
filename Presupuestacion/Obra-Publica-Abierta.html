@@ -59,50 +59,10 @@
             }
         }
 
-        .featured-box {
-            justify-content: center;
-            align-items: center;
-            justify-items: center;
-            background-color: var(--verde-3);
-            color: var(--blanco);
-            border-radius: 20px;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            /* Móvil: columna */
-            align-items: center;
-            gap: 30px;
-            margin-bottom: 60px;
-            margin-left: auto;
-            margin-right: auto;
-            border: 3px solid var(--dorado-8);
-            box-shadow: 0 10px 30px rgba(125, 36, 71, 0.2);
-            max-width: 1200px;
-        }
-
-        /* En pantallas grandes, cambia a fila */
-        @media (min-width: 768px) {
-            .featured-box {
-                flex-direction: row;
-                text-align: left;
-            }
-        }
-
-        .featured-icon {
-            font-size: 3rem;
-            color: var(--crema-4);
-        }
-
-        .featured-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--crema-4);
-        }
-
         /* --- ESTILOS GENERALES Y HEADER --- */
         .page-header {
             background-color: var(--guinda-1);
-            background-image: url('../models/images/banner_home.png');
+            background-image: url('../models/images/pc-gobierno-abierto.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -128,7 +88,7 @@
             .page-header {
                 padding: 60px 0 35px;
                 margin-bottom: 25px;
-                background-image: url('../models/images/banner_home.png');
+                background-image: url("../models/images/pc-gobierno-abierto.png");
             }
 
             .page-header h1 {
@@ -471,62 +431,15 @@
                 <ul class="navbar-nav align-items-center text-uppercase fw-bold">
 
                     <li class="nav-item">
-                        <a href="../Presupuestacion/Ciclo-Presupuestario.html" class="nav-link">
-                            <i class="fas fa-sync-alt me-1"></i> CICLO
+                        <a href="../Portal.html" class="nav-link">
+                            <i class="fas fa-home me-1"></i> INICIO
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="../Presupuestacion/Planeacion.html" class="nav-link">
-                            <i class="fas fa-chart-line me-1"></i> PLANEACIÓN
-                        </a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fas fa-arrow-down me-1"></i> INGRESO
-                        </a>
-                        <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ingresos-Federales.html"><i
-                                        class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Recaudacion-Local.html"><i
-                                        class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fas fa-arrow-up me-1"></i> GASTO
-                        </a>
-                        <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Programas.html"><i
-                                        class="fas fa-clipboard-list me-2"></i> Programas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Obra-Publica-Abierta.html"><i
-                                        class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Entidades-Federativas.html"><i
-                                        class="fas fa-university me-2"></i> Entidades Federativas</a></li>
-                            <li><a class="dropdown-item py-2" href="../Presupuestacion/Ramo23.html"><i
-                                        class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="../Presupuestacion/Sistema-Evaluacion-Desempeno.html" class="nav-link">
-                            <i class="fas fa-chart-bar me-1"></i> EVALUACIÓN
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="../Presupuestacion/Datos-Abiertos.html" class="nav-link">
-                            <i class="fas fa-database me-1"></i> DATOS
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="../Presupuestacion/Capacitacion.html" class="nav-link">
-                            <i class="fas fa-graduation-cap me-1"></i> CAPACITACIÓN
+                        <a href="Obra-Publica-Abierta.html" class="nav-link active"
+                            style="color: var(--guinda-1) !important;">
+                            <i class="fas fa-hard-hat me-1"></i> OBRA PÚBLICA ABIERTA
                         </a>
                     </li>
 
@@ -572,7 +485,7 @@
             <div class="col-md-3">
                 <div class="stat-card">
                     <span class="stat-number" id="statObras"><i class="fas fa-spinner fa-spin"></i></span>
-                    <span class="stat-label">Obras Activas</span>
+                    <span class="stat-label">Total de Obras</span>
                 </div>
             </div>
             <div class="col-md-3">
@@ -723,7 +636,7 @@
                                     <select class="custom-select w-100" id="filterSector">
                                         <option selected>Todos los sectores</option>
                                         <option>Pavimentacion</option>
-                                        <option>Rehabilitaxciones viales</option>
+                                        <option>Rehabilitaciones viales</option>
                                         <option>Obras Hidrosanitarias</option>
                                         <option>Mercados</option>
                                         <option>Infra Educativa</option>
@@ -796,8 +709,8 @@
                     <div class="featured-content" style="flex: 1;">
                         <h3>NOTA:</h3>
                         <p style="opacity: 0.9;">
-                            Reporte de obras públicas comprendidas en el periodo del 1 de enero del 2026 al 31 de
-                            diciembre del 2026.
+                            Reporte de Obras publicas comprendidas en el periodo del 1 de enero del 2026 al 31 de
+                            diciembre del 2026...Aun en proceso.
                         </p>
                     </div>
                 </div>
@@ -890,7 +803,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
@@ -1010,61 +923,48 @@
             return '$' + n.toLocaleString('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
         }
 
-        // ============ LECTURA XLSX CON SHEETJS ============
-        function loadXLSXData() {
-            fetch('../Data/REPORTE DE OBRAS y SERVICIOS 311225.xlsx')
-                .then(function (response) { return response.arrayBuffer(); })
-                .then(function (data) {
-                    var workbook = XLSX.read(data, { type: 'array' });
-                    var ws = workbook.Sheets['OBRA PUBLICA'];
-                    if (!ws) {
-                        console.error('Hoja OBRA PUBLICA no encontrada');
-                        return;
-                    }
+        // ============ LECTURA CSV CON PAPAPARSE ============
+        function loadCSVData() {
+            fetch('../Data/OBRA_PUBLICA_MODIFICADA_FINAL.csv')
+                .then(function (response) { return response.text(); })
+                .then(function (csvText) {
+                    var result = Papa.parse(csvText, {
+                        header: true,
+                        skipEmptyLines: true,
+                        dynamicTyping: false
+                    });
 
-                    var range = XLSX.utils.decode_range(ws['!ref']);
                     obraData = [];
 
-                    // Headers en fila 6 (index 5), datos desde fila 7 (index 6)
-                    for (var r = 6; r <= range.e.r; r++) {
-                        var year = getCellValue(ws, r, 1);       // Col B = AÑO
-                        var rubro = getCellValue(ws, r, 2);       // Col C = RUBRO
-                        var monto_total = getCellNum(ws, r, 13);  // Col N = MONTO TOTAL
-                        var avance_fisico = getCellNum(ws, r, 20);// Col U = AVANCE FÍSICO
-                        var junta = getCellValue(ws, r, 21);      // Col V = JUNTAS AUXILIARES
+                    result.data.forEach(function (row) {
+                        var year = row['AÑO'] ? String(row['AÑO']).trim() : '';
+                        var rubro = row['RUBRO'] ? String(row['RUBRO']).trim() : '';
+                        var montoStr = row['MONTO TOTAL'] || '0';
+                        var avanceStr = row['AVANCE FÍSICO'] || '0';
+                        var junta = row['JUNTAS AUXILIARES'] ? String(row['JUNTAS AUXILIARES']).trim() : '';
+                        var cantidadObras = row['CANTIDAD DE OBRAS'] ? String(row['CANTIDAD DE OBRAS']).trim() : '';
 
                         if (year && rubro) {
                             obraData.push({
-                                year: String(year),
-                                rubro: String(rubro).trim().toUpperCase(),
-                                monto_total: monto_total || 0,
-                                avance_fisico: avance_fisico || 0,
-                                junta: junta ? String(junta).trim().toUpperCase() : 'SIN ASIGNAR'
+                                year: year,
+                                rubro: rubro.toUpperCase(),
+                                monto_total: parseFloat(montoStr) || 0,
+                                avance_fisico: parseFloat(avanceStr) || 0,
+                                junta: junta ? junta.toUpperCase() : 'SIN ASIGNAR',
+                                cantidad_obras: parseInt(cantidadObras) || 1
                             });
                         }
-                    }
+                    });
 
-                    console.log('XLSX cargado: ' + obraData.length + ' registros');
+                    console.log('CSV cargado: ' + obraData.length + ' registros');
                     initializeUI();
                 })
                 .catch(function (err) {
-                    console.error('Error cargando XLSX:', err);
+                    console.error('Error cargando CSV:', err);
                     document.getElementById('statObras').textContent = 'Error';
                     document.getElementById('statInversion').textContent = 'Error';
                     document.getElementById('statJuntas').textContent = 'Error';
                 });
-        }
-
-        function getCellValue(ws, row, col) {
-            var cell = ws[XLSX.utils.encode_cell({ r: row, c: col })];
-            return cell ? cell.v : null;
-        }
-
-        function getCellNum(ws, row, col) {
-            var cell = ws[XLSX.utils.encode_cell({ r: row, c: col })];
-            if (!cell) return 0;
-            var val = cell.v;
-            return (typeof val === 'number') ? val : parseFloat(val) || 0;
         }
 
         // ============ INICIALIZAR UI ============
@@ -1075,11 +975,12 @@
 
         // ============ STAT CARDS ============
         function updateStatCards(filteredData) {
-            var totalObras = filteredData.length;
+            var totalObras = 0;
             var totalInversion = 0;
             var juntasSet = {};
 
             filteredData.forEach(function (d) {
+                totalObras += d.cantidad_obras;
                 totalInversion += d.monto_total;
                 juntasSet[d.junta] = true;
             });
@@ -1088,7 +989,7 @@
 
             document.getElementById('statObras').textContent = totalObras.toLocaleString('es-MX');
             document.getElementById('statInversion').textContent = formatMoneyFull(totalInversion);
-            document.getElementById('statJuntas').textContent = totalJuntas;
+            document.getElementById('statJuntas').textContent = 18;
         }
 
         // ============ DROPDOWN DE JUNTAS ============
@@ -1166,8 +1067,6 @@
                 card.style.boxShadow = '';
             }
         });
-
-        // ============ FILTROS COMBINADOS ============
         function applyFilters() {
             var filtered = obraData;
 
@@ -1379,7 +1278,7 @@
 
         // ============ INICIALIZACIÓN ============
         document.addEventListener('DOMContentLoaded', function () {
-            loadXLSXData();
+            loadCSVData();
         });
     </script>
 </body>

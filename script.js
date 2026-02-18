@@ -3,7 +3,7 @@ const faqData = {
     estudiante: [
         {
             question: "¿Qué es el ciclo presupuestario?",
-            answer: 'Es una forma de organizar el gasto público a través de 7 etapas, <a href="#ciclo-presupuestario">conócelas</a>.'
+            answer: 'Es una forma de organizar el gasto público a través de 7 etapas.'
         },
         {
             question: "¿Cómo se conforma el Presupuesto de Egresos?",
@@ -11,110 +11,74 @@ const faqData = {
         },
         {
             question: "¿Dónde encuentro información sobre el gasto de las instituciones?",
-            answer: 'En las bases de <a href="#datos-abiertos">Datos Abiertos</a> sobre Avance del gasto.'
+            answer: 'En la sección de <a href="Presupuestacion/Obra-Publica-Abierta.html">Obra Pública Abierta</a> sobre el avance del gasto.'
         },
         {
-            question: "¿Cómo puedo capacitarme en temas presupuestarios?",
-            answer: 'Conoce <a href="#capacitacion">aquí</a> la oferta de cursos disponibles.'
+            question: "¿Cómo puedo conocer las obras de infraestructura?",
+            answer: 'Consulta la sección de <a href="Presupuestacion/Obra-Publica-Abierta.html">Obra Pública Abierta</a>.'
         }
     ],
     servidor: [
         {
-            question: "¿Cómo me inscribo a una capacitación?",
-            answer: 'Da clic en "Solicitar información" dentro de la sección <a href="#capacitacion">Capacitación</a>.'
+            question: "¿Dónde consulto las obras públicas?",
+            answer: 'En la sección de <a href="Presupuestacion/Obra-Publica-Abierta.html">Obra Pública Abierta</a>.'
         },
         {
             question: "¿Cuál es la calidad del reporte de mi estado?",
-            answer: 'En el apartado de <a href="#gobiernos-locales">¿Cómo reportan los gobiernos locales?</a>'
+            answer: 'Consulta los reportes disponibles en el portal.'
         },
         {
             question: "¿Cómo conozco el desempeño de un programa?",
-            answer: 'Consulta la ficha informativa del <a href="#programas">programa</a> de tu interés.'
+            answer: 'Consulta la ficha informativa del programa de tu interés.'
         },
         {
-            question: "¿Dónde consulto las evaluaciones de programas?",
-            answer: 'En la sección <a href="#evaluacion">Evaluación</a> hallarás información.'
+            question: "¿Dónde consulto el avance de las obras?",
+            answer: 'En la sección de <a href="Presupuestacion/Obra-Publica-Abierta.html">Obra Pública Abierta</a> encontrarás los avances.'
         }
     ],
     investigador: [
         {
-            question: "¿Qué secciones tienen API disponible?",
-            answer: 'Las secciones <a href="#programas">Programas</a> y <a href="#obra-publica">Obra Pública</a>.'
+            question: "¿Qué información está disponible?",
+            answer: 'La sección de <a href="Presupuestacion/Obra-Publica-Abierta.html">Obra Pública Abierta</a> tiene datos completos.'
         },
         {
             question: "¿Cómo interpreto las bases de datos?",
-            answer: 'En la misma tabla de búsqueda de <a href="#datos-abiertos">Datos Abiertos</a>.'
+            answer: 'En la misma tabla de búsqueda de Obra Pública Abierta.'
         },
         {
             question: "¿Las obras tienen información para geolocalización?",
-            answer: 'En las bases de datos de <a href="#obra-publica">Obra Pública Abierta</a>.'
+            answer: 'Sí, en la sección de <a href="Presupuestacion/Obra-Publica-Abierta.html">Obra Pública Abierta</a>.'
         },
         {
             question: "¿Cómo realizo comparativos del presupuesto?",
-            answer: 'Descarga las bases de <a href="#datos-abiertos">Datos Abiertos</a> de cada período.'
+            answer: 'Descarga las bases de datos disponibles en el portal.'
         }
     ],
     desarrollador: [
         {
             question: "¿Cuánto presupuesto se aprobó para determinado sector?",
-            answer: 'En la sección <a href="#documentos">Documentos Ciudadanos</a>.'
+            answer: 'Consulta la información en el portal de transparencia.'
         },
         {
             question: "¿Cuánto gasta determinado programa?",
-            answer: 'Utiliza la tabla de búsqueda de <a href="#programas">Programas</a>.'
+            answer: 'Consulta los datos disponibles en el portal.'
         },
         {
             question: "¿Dónde consulto el presupuesto de una obra pública?",
-            answer: 'Localiza la obra pública en <a href="#obra-publica">Obra Pública Abierta</a>.'
+            answer: 'Localiza la obra pública en <a href="Presupuestacion/Obra-Publica-Abierta.html">Obra Pública Abierta</a>.'
         },
         {
             question: "¿Cómo realizo comparativos?",
-            answer: 'Descarga las bases de <a href="#datos-abiertos">Datos Abiertos</a>.'
+            answer: 'Descarga las bases de datos disponibles en el portal.'
         }
     ]
 };
 
-// Información de páginas para los 10 contenedores
+// Información de páginas
 const pagesData = {
-    'ciclo-presupuestario': {
-        title: 'Ciclo Presupuestario',
-        description: 'Conoce las etapas del proceso presupuestario del Estado de Puebla'
-    },
-    'planeacion': {
-        title: 'Planeación',
-        description: 'Planes y programas de desarrollo estatal de Puebla'
-    },
-    'ingresos-federales': {
-        title: 'Ingresos Federales',
-        description: 'Recursos federales asignados al Estado de Puebla'
-    },
-    'recaudacion-local': {
-        title: 'Recaudación Local',
-        description: 'Ingresos generados en la entidad de Puebla'
-    },
-    'programas': {
-        title: 'Programas Presupuestarios',
-        description: 'Programas presupuestarios en ejecución en Puebla'
-    },
     'obra-publica': {
         title: 'Obra Pública Abierta',
         description: 'Proyectos de infraestructura en desarrollo en Puebla'
-    },
-    'entidades-federativas': {
-        title: 'Entidades Federativas',
-        description: 'Información por entidad federativa de Puebla'
-    },
-    'evaluacion': {
-        title: 'Evaluación',
-        description: 'Resultados y evaluación de programas en Puebla'
-    },
-    'datos-abiertos': {
-        title: 'Datos Abiertos',
-        description: 'Bases de datos y recursos abiertos de Puebla'
-    },
-    'capacitacion': {
-        title: 'Capacitación',
-        description: 'Cursos y materiales de formación de Puebla'
     }
 };
 

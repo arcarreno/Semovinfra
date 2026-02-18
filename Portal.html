@@ -266,8 +266,8 @@
 
 <body>
 
-    <div class="preloader" id="preloader">
-        <img src="models/images/semo.png" alt="Cargando..." class="loader-img">
+    <div class="preloader" style="transition: all;" id="preloader">
+        <img src="models/images/semo.png" alt="Cargando" class="loader-img">
     </div>
 
     <div class="top-bar">
@@ -312,57 +312,10 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <ul class="navbar-nav align-items-center text-uppercase fw-bold">
+
                     <li class="nav-item">
-                        <a href="Presupuestacion/Ciclo-Presupuestario.html" class="nav-link">
-                            <i class="fas fa-sync-alt me-1"></i> CICLO
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="Presupuestacion/Planeacion.html" class="nav-link">
-                            <i class="fas fa-chart-line me-1"></i> PLANEACIÓN
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fas fa-arrow-down me-1"></i> INGRESO
-                        </a>
-                        <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="Presupuestacion/Ingresos-Federales.html"><i
-                                        class="fas fa-landmark me-2"></i> Ingresos Federales</a></li>
-                            <li><a class="dropdown-item py-2" href="Presupuestacion/Recaudacion-Local.html"><i
-                                        class="fas fa-map-marker-alt me-2"></i> Recaudación Local</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fas fa-arrow-up me-1"></i> GASTO
-                        </a>
-                        <ul class="dropdown-menu shadow">
-                            <li><a class="dropdown-item py-2" href="Presupuestacion/Programas.html"><i
-                                        class="fas fa-clipboard-list me-2"></i> Programas</a></li>
-                            <li><a class="dropdown-item py-2" href="Presupuestacion/Obra-Publica-Abierta.html"><i
-                                        class="fas fa-hard-hat me-2"></i> Obra Pública</a></li>
-                            <li><a class="dropdown-item py-2" href="Presupuestacion/Entidades-Federativas.html"><i
-                                        class="fas fa-university me-2"></i> Entidades Federativas</a></li>
-                            <li><a class="dropdown-item py-2" href="Presupuestacion/Ramo23.html"><i
-                                        class="fas fa-chart-pie me-2"></i> Ramo 23</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="Presupuestacion/Sistema-Evaluacion-Desempeno.html" class="nav-link">
-                            <i class="fas fa-chart-bar me-1"></i> EVALUACIÓN
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="Presupuestacion/Datos-Abiertos.html" class="nav-link">
-                            <i class="fas fa-database me-1"></i> DATOS
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="Presupuestacion/Capacitacion.html" class="nav-link">
-                            <i class="fas fa-graduation-cap me-1"></i> CAPACITACIÓN
+                        <a href="Presupuestacion/Obra-Publica-Abierta.html" class="nav-link">
+                            <i class="fas fa-arrow-up me-1"></i> Obra Pública Abierta
                         </a>
                     </li>
                     <li class="nav-item ms-lg-2">
@@ -391,17 +344,37 @@
 
             <div class="carousel-slide">
                 <div class="slide-overlay"></div>
-                <img src="models/images/banner_PEF2026.png" alt="Presupuesto 2026" class="slide-image">
+                <img src="models/images/pc-gobierno-abierto.png" alt="Presupuesto 2026" class="slide-image">
             </div>
 
             <div class="carousel-slide">
                 <div class="slide-overlay"></div>
-                <img src="models/images/banner_3er_trimestre.png" alt="3er Trimestre" class="slide-image">
+                <img src="models/images/Cuida tus datos_ banner 1600x533.png" alt="3er Trimestre" class="slide-image">
             </div>
 
             <div class="carousel-slide">
                 <div class="slide-overlay"></div>
-                <img src="models/images/banner_lineamientos.png" alt="Lineamientos" class="slide-image">
+                <img src="models/images/LICITACIONES.png" alt="Lineamientos" class="slide-image">
+            </div>
+            <div class="carousel-slide">
+                <div class="slide-overlay"></div>
+                <img src="models/images/banner 1 informe 1600 x 533 02.png" alt="Lineamientos" class="slide-image">
+            </div>
+            <div class="carousel-slide">
+                <div class="slide-overlay"></div>
+                <img src="models/images/pc-mujeres-imparables.png" alt="Lineamientos" class="slide-image">
+            </div>
+            <div class="carousel-slide">
+                <div class="slide-overlay"></div>
+                <img src="models/images/Sin corrupcin_PC.png" alt="Lineamientos" class="slide-image">
+            </div>
+            <div class="carousel-slide">
+                <div class="slide-overlay"></div>
+                <img src="models/images/pc-estacionamientorotativo.png" alt="Lineamientos" class="slide-image">
+            </div>
+            <div class="carousel-slide">
+                <div class="slide-overlay"></div>
+                <img src="models/images/PLAN-MPAL-DE-DESARROLLO.png" alt="Lineamientos" class="slide-image">
             </div>
 
             <button class="carousel-btn carousel-prev">
@@ -416,6 +389,11 @@
                 <span class="indicator" data-slide="1"></span>
                 <span class="indicator" data-slide="2"></span>
                 <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
+                <span class="indicator" data-slide="5"></span>
+                <span class="indicator" data-slide="6"></span>
+                <span class="indicator" data-slide="7"></span>
+                <span class="indicator" data-slide="8"></span>
             </div>
         </div>
     </section>
@@ -447,74 +425,27 @@
                 Explora la información del presupuesto</h2>
             <div style="width: 80px; height: 4px; background: var(--guinda-1); margin: 10px auto 40px;"></div>
 
-            <div class="portal-grid">
-                <a href="Presupuestacion/Ciclo-Presupuestario.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-sync-alt"></i></div>
-                    <h3>Ciclo Presupuestario</h3>
-                    <p>Etapas del proceso</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Planeacion.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Planeación</h3>
-                    <p>Planes y programas</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Ingresos-Federales.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-landmark"></i></div>
-                    <h3>Ingresos Federales</h3>
-                    <p>Recursos asignados</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Recaudacion-Local.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <h3>Recaudación Local</h3>
-                    <p>Ingresos propios</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Programas.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-clipboard-list"></i></div>
-                    <h3>Programas</h3>
-                    <p>Programas en ejecución</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Ramo23.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                    <h3>Ramo 23</h3>
-                    <p>Provisiones salariales</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Obra-Publica-Abierta.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-hard-hat"></i></div>
-                    <h3>Obra Pública</h3>
-                    <p>Proyectos de infraestructura</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Entidades-Federativas.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-university"></i></div>
-                    <h3>Entidades Federativas</h3>
-                    <p>Información por estado</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Sistema-Evaluacion-Desempeno.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h3>Evaluación</h3>
-                    <p>Resultados y desempeño</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Datos-Abiertos.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-database"></i></div>
-                    <h3>Datos Abiertos</h3>
-                    <p>Descarga de bases de datos</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-                <a href="Presupuestacion/Capacitacion.html" class="page-card">
-                    <div class="page-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>Capacitación</h3>
-                    <p>Cursos y talleres</p>
-                    <div class="page-hover-overlay"></div>
-                </a>
-            </div>
+            <a href="Presupuestacion/Obra-Publica-Abierta.html" class="page-card" style="
+                display: flex; 
+                flex-direction: row; 
+                align-items: center; 
+                text-align: left; 
+                padding: 35px 40px; 
+                width: 100%; 
+                max-width: 100%; 
+                gap: 30px;
+                text-decoration: none;
+            ">
+                <div class="page-icon" style="flex-shrink: 0;"><i class="fas fa-hard-hat"></i></div>
+                <div style="flex: 1;">
+                    <h3 style="margin-bottom: 6px;">Obra Pública Abierta</h3>
+                    <p style="margin: 0;">Consulta los proyectos de infraestructura, inversiones y avances de obras
+                        públicas en el municipio de Puebla</p>
+                </div>
+                <i class="fas fa-arrow-right"
+                    style="font-size: 24px; color: var(--guinda-1); transition: transform 0.3s; flex-shrink: 0;"></i>
+                <div class="page-hover-overlay"></div>
+            </a>
         </div>
     </section>
 
